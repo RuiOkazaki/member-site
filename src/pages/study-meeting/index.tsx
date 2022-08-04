@@ -1,14 +1,8 @@
-import { Suspense } from "react";
-import { Layout } from "src/components/layout";
-import { AppLoading } from "src/components/ui-libraries/AppLoading";
+import { NextPage } from "next";
+import { StudyMeeting } from "src/components/page/StudyMeeting";
 
-const StudyMeeting = () => {
-  return (
-    <Layout>
-      <Suspense fallback={<AppLoading />}>
-        <h1>勉強会</h1>
-      </Suspense>
-    </Layout>
-  );
+const StudyMeetingPage: NextPage = () => {
+  return <StudyMeeting />;
 };
-export default StudyMeeting;
+
+export default StudyMeetingPage;
