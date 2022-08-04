@@ -145,22 +145,25 @@ const Profile: FC<ProfileProps> = memo(({ size, isAdmin }) => {
 });
 Profile.displayName = "Profile";
 
-const ProfileImg = () => {
-  const { currentUser } = useCurrentUser();
+type ProfileImgProps = {
+  displayName: string | undefined;
+  photoURL: string | undefined;
+};
+const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
   return (
     <div>
-      <img src={currentUser?.photoURL} alt={`${currentUser?.displayName}の画像`} className={`rounded-full w-12`} />
-      <p className="pt-1 text-xs ">{currentUser?.displayName}</p>
+      <img src={photoURL} alt={`${displayName}の画像`} className={`rounded-full w-12`} />
+      <p className="pt-1 text-xs ">{displayName}</p>
     </div>
   );
 };
 
 type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
 
-export const AdminCard: FC<AdminCardProps> = memo(
+export const ComitteeCard: FC<AdminCardProps> = memo(
   ({ active, bio, displayName, faculty, field, github, grade, instagram, photoURL, position, status, university }) => {
     return (
-      <div className="relative py-6 px-4  bg-white hover:bg-gray-50 rounded-md shadow-md">
+      <div className="relative py-6  px-4 bg-white hover:bg-slate-50 rounded-md shadow-md hover:cursor-pointer">
         <div className="flex flex-col justify-center items-center">
           <Ribbon position={position} />
           <div className="items-center pt-2">
@@ -174,7 +177,7 @@ export const AdminCard: FC<AdminCardProps> = memo(
     );
   }
 );
-AdminCard.displayName = "AdminCard";
+ComitteeCard.displayName = "ComitteeCard";
 
 export const ActiveMemberCard = () => {
   return (
@@ -189,14 +192,15 @@ export const ActiveMemberCard = () => {
   );
 };
 
-export const MemberCard = () => {
+type MemberCardProps = { data: Pick<CurrentUser, "displayName" | "photoURL" | "uid"> };
+export const MemberCard: FC<MemberCardProps> = ({ data }) => {
+  if (!data) return null;
   return (
-    <div className="flex gap-2 py-6 px-4 bg-white hover:bg-gray-50 rounded-md shadow-md">
-      <ProfileImg />
-      <ProfileImg />
-      <ProfileImg />
-      <ProfileImg />
-    </div>
+    <Link href={`member/${data.uid}`} className="cursor-pointer">
+      <a>
+        <ProfileImg displayName={data.displayName} photoURL={data?.photoURL} />
+      </a>
+    </Link>
   );
 };
 

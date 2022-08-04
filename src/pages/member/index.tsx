@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { Text } from "@mantine/core";
-import { AdminCard, ActiveMemberCard, MemberCard } from "src/components/feature/Card";
+import { ComitteeCard, MemberCard } from "src/components/feature/MemberCard/MemberCard";
 import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { db } from "src/components/utils/libs/firebase";
@@ -28,7 +28,7 @@ const Member = () => {
 
   const Committee = users.map((user) => {
     if (user.position === 3 || user.position === 4 || user.position === 5)
-      return <AdminCard key={user.displayName} {...user} />;
+      return <ComitteeCard key={user.displayName} {...user} />;
   });
 
   return (
@@ -39,7 +39,7 @@ const Member = () => {
           <div className="flex flex-wrap gap-5">{Committee}</div>
         </div>
 
-        <div>
+        {/* <div>
           <Text weight="bold">アクティブメンバー</Text>
           <ActiveMemberCard />
         </div>
@@ -52,9 +52,18 @@ const Member = () => {
         <div>
           <Text weight="bold">2回生</Text>
           <MemberCard />
-        </div>
+        </div> */}
 
-        <div className="font-bold text-center">その他</div>
+        <Text weight="bold">全員</Text>
+        <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
+          {users.map((user, index) => {
+            return (
+              <div key={index}>
+                <MemberCard data={user} />
+              </div>
+            );
+          })}
+        </div>
         <h1>Member</h1>
         <p>上に検索バー・分野・学年で絞れるようにする</p>
         <p>自分の興味のある分野を専門としているメンバー一覧</p>
