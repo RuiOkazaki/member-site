@@ -1,16 +1,8 @@
-import { Suspense } from "react";
-import { Layout } from "src/components/layout";
-import { AppLoading } from "src/components/ui-libraries/AppLoading";
+import { NextPage } from "next";
+import { Home } from "src/components/page/Home";
 
-const Top = () => {
-  return (
-    <>
-      <Layout>
-        <Suspense fallback={<AppLoading />}></Suspense>
-      </Layout>
-    </>
-  );
+const HomePage: NextPage = () => {
+  return <Home />;
 };
-export default Top;
 
-// AppLoading削除→suspenseでLoadingコンポーネントを配置
+export default HomePage;
