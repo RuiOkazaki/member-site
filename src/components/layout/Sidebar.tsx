@@ -12,7 +12,7 @@ type MenuType = {
 const MENU: MenuType = [
   { icon: <HomeIcon />, label: "ホーム", href: LINKS.HOME },
   { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
-  { icon: <TextIcon />, label: "教材", href: LINKS.TEXT },
+  { icon: <TextIcon />, label: "教材", href: LINKS.TEACHINGMATERIAL },
   { icon: <StudyMeetingIcon />, label: "勉強会", href: LINKS.STUDYMEETING },
   { icon: <UsersIcon />, label: "1on1", href: LINKS.ONEONONE },
 ];
