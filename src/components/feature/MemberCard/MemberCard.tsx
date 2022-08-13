@@ -3,6 +3,7 @@ import { FC, memo } from "react";
 import Link from "next/link";
 import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
 import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
+import { fieldDetailsData } from "src/components/utils/constants/field";
 
 const UniAndBio = () => {
   // const arrays = [
@@ -47,24 +48,35 @@ const FieldInterest: FC<FieldInterestProps> = ({ field }) => {
   );
 };
 
-const InterestGroup = () => {
+type InterestGroupProps = {
+  field: string | null | undefined;
+  fieldDetails: string[] | null | undefined;
+};
+export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) => {
+  if (!field || !fieldDetails) return null;
+
   return (
     <div>
-      <FieldInterest field="フロントエンド" />
-      {/*技術・ 3つごとに並べる→6個までしか入力させないようにする */}
+      <FieldInterest field={field} />
       <div className="flex flex-wrap items-center mt-1 w-48">
-        <div className="flex justify-center items-center">
-          <span className="mx-1 w-2 h-2 bg-gray-500 rounded-full" />
-          <p className="p-1">Next.js</p>
-        </div>
-        <div className="flex justify-center items-center">
-          <span className="mx-1 w-2 h-2 bg-blue-500 rounded-full" />
-          <p className="p-1">React</p>
-        </div>
-        <div className="flex justify-center items-center">
-          <span className="mx-1 w-2 h-2 bg-red-500 rounded-full" />
-          <p className="p-1">GraphQL</p>
-        </div>
+        {fieldDetails.map((fieldDetail, index) => {
+          return (
+            <div className="flex justify-center items-center" key={index}>
+              {fieldDetailsData.map((fieldDetailData) => {
+                if (fieldDetailData.value === fieldDetail) {
+                  return (
+                    <span
+                      className="flex justify-center items-center mx-1 w-2 h-2 rounded-full"
+                      key={fieldDetailData.value}
+                      style={{ backgroundColor: fieldDetailData.color }}
+                    ></span>
+                  );
+                }
+              })}
+              <p className="p-1">{fieldDetail}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -149,7 +161,7 @@ type ProfileImgProps = {
   displayName: string | undefined;
   photoURL: string | undefined;
 };
-const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
+export const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
   return (
     <div>
       <img src={photoURL} alt={`${displayName}の画像`} className={`rounded-full w-12`} />
@@ -160,23 +172,21 @@ const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
 
 type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
 
-export const ComitteeCard: FC<AdminCardProps> = memo(
-  ({ active, bio, displayName, faculty, field, github, grade, instagram, photoURL, position, status, university }) => {
-    return (
-      <div className="relative py-6  px-4 bg-white hover:bg-slate-50 rounded-md shadow-md hover:cursor-pointer">
-        <div className="flex flex-col justify-center items-center">
-          <Ribbon position={position} />
-          <div className="items-center pt-2">
-            <Profile size={24} isAdmin />
-          </div>
-        </div>
-        <div className="px-2">
-          <InterestGroup />
+export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDetails }) => {
+  return (
+    <div className="relative py-6 px-4 bg-white hover:bg-slate-50 rounded-md shadow-md hover:cursor-pointer">
+      <div className="flex flex-col justify-center items-center">
+        <Ribbon position={position} />
+        <div className="items-center pt-2">
+          <Profile size={24} isAdmin />
         </div>
       </div>
-    );
-  }
-);
+      <div className="px-2">
+        <InterestGroup field={field} fieldDetails={fieldDetails} />
+      </div>
+    </div>
+  );
+});
 ComitteeCard.displayName = "ComitteeCard";
 
 export const ActiveMemberCard = () => {
@@ -203,5 +213,3 @@ export const MemberCard: FC<MemberCardProps> = ({ data }) => {
     </Link>
   );
 };
-
-// todo: interestの技術は最大6つ・設定モーダル

@@ -11,6 +11,9 @@ const Member = () => {
   const [users, setUsers] = useState<CurrentUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // todo ここに、自分のデータのfieldを取得して入れる
+  const myField = "フロントエンド";
+
   useEffect(() => {
     try {
       const getUsers = async () => {
@@ -26,33 +29,29 @@ const Member = () => {
 
   if (isLoading) return <AppLoading />;
 
-  const Committee = users.map((user) => {
-    if (user.position === 3 || user.position === 4 || user.position === 5)
-      return <ComitteeCard key={user.displayName} {...user} />;
-  });
-
   return (
     <Layout>
       <div className="flex flex-col flex-wrap gap-5 w-full">
         <div className="pt-5">
           <Text weight="bold">コミッティー</Text>
-          <div className="flex flex-wrap gap-5">{Committee}</div>
+          <div className="flex flex-wrap gap-5">
+            {users
+              .filter((user) => user.position === 3 || user.position === 4 || user.position === 5)
+              .map((user) => (
+                <ComitteeCard key={user.displayName} {...user} />
+              ))}
+          </div>
         </div>
-
-        {/* <div>
-          <Text weight="bold">アクティブメンバー</Text>
-          <ActiveMemberCard />
-        </div>
-
         <div>
-          <Text weight="bold">自分の興味のある分野を専門としているメンバー</Text>
-          <MemberCard />
+          <Text weight="bold">{myField}を専門としているメンバー</Text>
+          <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
+            {users
+              .filter((user) => user.field === myField)
+              .map((user) => {
+                return <MemberCard key={user.displayName} data={user} />;
+              })}
+          </div>
         </div>
-
-        <div>
-          <Text weight="bold">2回生</Text>
-          <MemberCard />
-        </div> */}
 
         <Text weight="bold">全員</Text>
         <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
