@@ -236,7 +236,7 @@ export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, s
             onChange={(e) => setFormData({ ...formData, field: e })}
           />
           <MultiSelect
-            label="よく使用するフレームワーク・ライブラリー"
+            label="よく使用する言語・フレームワーク・ライブラリー"
             placeholder="Next.js"
             searchable
             nothingFound="見つかりませんでした。"

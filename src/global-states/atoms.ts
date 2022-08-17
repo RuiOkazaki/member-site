@@ -7,7 +7,7 @@ export type CurrentUser = {
   displayName: string | undefined;
   email: string | undefined;
   faculty: string | undefined | null;
-  field: string | undefined | null;
+  field: string | null;
   fieldDetails: Array<string> | undefined;
   github: string | undefined;
   grade: string | null | undefined;

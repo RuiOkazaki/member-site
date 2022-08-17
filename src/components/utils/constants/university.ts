@@ -24,10 +24,11 @@ export const facultyData = [
 ];
 
 export const gradeData = [
-  { value: "1", label: "1年生" },
-  { value: "2", label: "2年生" },
-  { value: "3", label: "3年生" },
-  { value: "4", label: "4年生" },
-  { value: "5", label: "修士1年生" },
-  { value: "6", label: "修士2年生" },
+  { value: "1年生", label: "1年生" },
+  { value: "2年生", label: "2年生" },
+  { value: "3年生", label: "3年生" },
+  { value: "4年生", label: "4年生" },
+  { value: "修士1年生", label: "修士1年生" },
+  { value: "修士1年生", label: "修士2年生" },
+  { value: "その他", label: "その他" },
 ];

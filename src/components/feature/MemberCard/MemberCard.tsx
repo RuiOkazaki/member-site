@@ -5,33 +5,33 @@ import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-librar
 import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
 import { fieldDetailsData } from "src/components/utils/constants/field";
 
-const UniAndBio = () => {
-  // const arrays = [
-  //   ["uni", "同志社"],
-  //   ["faculty", "経済"],
-  //   ["grade", "学部2"],
-  // ];
+type UniAndBioProps = {
+  bio: string | undefined;
+  university: string | undefined;
+  faculty: string | undefined | null;
+  grade: string | undefined | null;
+};
+export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade }) => {
   return (
     <div className="py-1 px-2  rounded-lg">
       <div className="flex">
-        {/* mapで回してほしい */}
         <div className="flex flex-col">
           <p className="font-bold text-gray-400">uni</p>
-          <p>同志社</p>
+          <p>{university}</p>
         </div>
         <div className="px-2">
           <p className="font-bold text-gray-400">faculty</p>
-          <p>経済</p>
+          <p>{faculty}</p>
         </div>
         <div className="px-2">
           <p className="font-bold text-gray-400">grade</p>
-          <span>学部2</span>
+          <span>{grade}</span>
         </div>
       </div>
 
       <div className="mt-2">
         <p className="font-bold text-gray-400">自己紹介</p>
-        <p className="w-full truncate">はじめまして！よろしくお願いします！！！！！！！！！！！</p>
+        <p className="w-full truncate">{bio}</p>
       </div>
     </div>
   );
@@ -50,7 +50,7 @@ const FieldInterest: FC<FieldInterestProps> = ({ field }) => {
 
 type InterestGroupProps = {
   field: string | null | undefined;
-  fieldDetails: string[] | null | undefined;
+  fieldDetails: string[] | undefined;
 };
 export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) => {
   if (!field || !fieldDetails) return null;
@@ -83,11 +83,11 @@ export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) =
 };
 
 type LinkComponentProps = {
-  github?: string;
+  github: string | undefined;
   twitter?: string;
   instagram?: string;
 };
-const LinkComponent: FC<LinkComponentProps> = ({ github, twitter, instagram }) => {
+export const LinkComponent: FC<LinkComponentProps> = ({ github, twitter, instagram }) => {
   return (
     <div className="flex justify-between px-2 w-[120px]">
       <Link href={`https://github.com/${github}`}>
