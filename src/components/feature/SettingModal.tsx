@@ -27,12 +27,11 @@ type Props = {
   setOpened: () => void;
 };
 
-export type FormData = Omit<CurrentUser, "uid" | "createdAt" | "id">;
+export type FormData = Omit<CurrentUser, "uid" | "createdAt" | "id" | "active">;
 
 export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, setOpened }) => {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
-    active: currentUser?.active,
     bio: currentUser.bio,
     displayName: currentUser.displayName,
     email: currentUser.email,
