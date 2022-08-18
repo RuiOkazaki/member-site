@@ -5,14 +5,19 @@ import { ComitteeCard, MemberCard } from "src/components/feature/MemberCard/Memb
 import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser } from "src/global-states/atoms";
+import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
 
 const Member = () => {
   const [users, setUsers] = useState<CurrentUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useCurrentUser();
+  const myField = currentUser?.field;
 
-  // todo ここに、自分のデータのfieldを取得して入れる
-  const myField = "フロントエンド";
+  const distinctLeaderPosition = (user: CurrentUser) => {
+    if (user.position === 3 || user.position === 4 || user.position === 5) {
+      return true;
+    }
+  };
 
   useEffect(() => {
     try {
@@ -36,31 +41,31 @@ const Member = () => {
           <Text weight="bold">コミッティー</Text>
           <div className="flex flex-wrap gap-5">
             {users
-              .filter((user) => user.position === 3 || user.position === 4 || user.position === 5)
+              .filter((user) => distinctLeaderPosition(user))
               .map((user) => (
                 <ComitteeCard key={user.displayName} {...user} />
               ))}
           </div>
         </div>
         <div>
-          <Text weight="bold">{myField}を専門としているメンバー</Text>
-          <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
-            {users
-              .filter((user) => user.field === myField)
-              .map((user) => {
-                return <MemberCard key={user.displayName} data={user} />;
-              })}
-          </div>
+          {myField && (
+            <>
+              <Text weight="bold">{myField}を専門としているメンバー</Text>
+              <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
+                {users
+                  .filter((user) => user.field === myField && user.uid !== currentUser.uid)
+                  .map((user) => {
+                    return <MemberCard key={user.displayName} data={user} />;
+                  })}
+              </div>
+            </>
+          )}
         </div>
 
         <Text weight="bold">全員</Text>
         <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
           {users.map((user, index) => {
-            return (
-              <div key={index}>
-                <MemberCard data={user} />
-              </div>
-            );
+            return <MemberCard data={user} key={index} />;
           })}
         </div>
         <h1>Member</h1>

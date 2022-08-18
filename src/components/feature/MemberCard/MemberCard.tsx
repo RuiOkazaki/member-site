@@ -8,8 +8,8 @@ import { fieldDetailsData } from "src/components/utils/constants/field";
 type UniAndBioProps = {
   bio: string | undefined;
   university: string | undefined;
-  faculty: string | undefined | null;
-  grade: string | undefined | null;
+  faculty: string | undefined;
+  grade: string | undefined;
 };
 export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade }) => {
   return (
@@ -82,29 +82,31 @@ export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) =
   );
 };
 
-type LinkComponentProps = {
-  github: string | undefined;
+type MemberSNSLinkProps = {
+  github?: string;
   twitter?: string;
   instagram?: string;
 };
-export const LinkComponent: FC<LinkComponentProps> = ({ github, twitter, instagram }) => {
+export const MemberSNSLink: FC<MemberSNSLinkProps> = ({ github, twitter, instagram }) => {
+  const snsLinks = [
+    { name: "github", url: github, icon: <GitHubIcon /> },
+    { name: "twitter", url: twitter, icon: <TwitterIcon /> },
+    { name: "instagram", url: instagram, icon: <InstagramIcon /> },
+  ];
+
   return (
     <div className="flex justify-between px-2 w-[120px]">
-      <Link href={`https://github.com/${github}`}>
-        <a>
-          <GitHubIcon />
-        </a>
-      </Link>
-      <Link href={`https://twitter.com/${twitter}`}>
-        <a>
-          <TwitterIcon />
-        </a>
-      </Link>
-      <Link href={`https://instagram.com/${instagram}`}>
-        <a>
-          <InstagramIcon />
-        </a>
-      </Link>
+      {snsLinks.map((snsLink, index) => {
+        if (snsLink.url) {
+          return (
+            <Link href={`https://${snsLink.name}.com/${snsLink.url}`} key={index}>
+              <a target="_blank" rel="noopener noreferrer">
+                {snsLink.icon}
+              </a>
+            </Link>
+          );
+        }
+      })}
     </div>
   );
 };
