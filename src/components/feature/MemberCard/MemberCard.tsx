@@ -8,8 +8,8 @@ import { fieldDetailsData } from "src/components/utils/constants/field";
 type UniAndBioProps = {
   bio: string | undefined;
   university: string | undefined;
-  faculty: string | undefined;
-  grade: string | undefined;
+  faculty: string | undefined | null;
+  grade: string | undefined | null;
 };
 export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade }) => {
   return (

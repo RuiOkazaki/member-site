@@ -6,11 +6,11 @@ export type CurrentUser = {
   createdAt: Date;
   displayName: string | undefined;
   email: string | undefined;
-  faculty: string | undefined;
+  faculty: string | undefined | null;
   field: string | null;
   fieldDetails: Array<string> | undefined;
   github: string | undefined;
-  grade: string | undefined;
+  grade: string | undefined | null;
   instagram: string | undefined;
   photoURL: string;
   position: number;
