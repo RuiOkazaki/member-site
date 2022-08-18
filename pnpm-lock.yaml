@@ -17,6 +17,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.28.0
   autoprefixer: ^10.4.7
   blueimp-load-image: ^5.16.0
+  clsx: ^1.2.1
   eslint: 8.17.0
   eslint-config-next: 12.1.6
   eslint-plugin-import: ^2.26.0
@@ -40,6 +41,7 @@ dependencies:
   '@mantine/notifications': 5.1.7_odupcudyxpix7mjwsfdlwtu65a
   '@types/blueimp-load-image': 5.16.0
   blueimp-load-image: 5.16.0
+  clsx: 1.2.1
   firebase: 9.9.2
   next: 12.1.6_oilcy444popke7cin4orzlm63e
   react: 18.1.0
@@ -1907,7 +1909,6 @@ packages:
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
-    dev: true
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
