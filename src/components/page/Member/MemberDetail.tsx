@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { Layout } from "src/components/layout";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser } from "src/global-states/atoms";
-import { InterestGroup, MemberSNSLink, ProfileImg, UniAndBio } from "src/components/feature/MemberCard/MemberCard";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { InterestGroup, MemberSNSLink, UniAndBio } from "src/components/feature/MemberCard/MemberCard";
+import { ProfileImg } from "src/components/feature/MemberCard/ProfileImg";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 
 export const MemberDetail = () => {

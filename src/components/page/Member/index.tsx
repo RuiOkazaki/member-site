@@ -5,11 +5,12 @@ import { ComitteeCard, MemberCard } from "src/components/feature/MemberCard/Memb
 import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
+import { useCurrentUser } from "src/global-states/atoms";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
 
 export const Member: FC = () => {
   const [users, setUsers] = useState<CurrentUser[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { currentUser } = useCurrentUser();
   const myField = currentUser?.field;
 
