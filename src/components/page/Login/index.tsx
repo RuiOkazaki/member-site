@@ -11,7 +11,7 @@ type ButtonProps = {
 const LoginButton: FC<ButtonProps> = ({ Icon, text, onClick }) => {
   return (
     <div
-      className="flex gap-3 justify-center items-center py-2 px-4 mb-8 w-72 bg-gray-50  hover:bg-gray-100 rounded-2xl border border-gray-300 hover:shadow-md cursor-pointer"
+      className="mb-8 flex w-72 cursor-pointer items-center justify-center gap-3 rounded-2xl border  border-gray-300 bg-gray-50 py-2 px-4 hover:bg-gray-100 hover:shadow-md"
       onClick={onClick}
     >
       {Icon}
@@ -24,9 +24,9 @@ export const Login: FC = () => {
   const { signInWithGoogle, signInWithGitHub } = useAuth();
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex h-screen items-center justify-center">
       <div>
-        <h1 className="pb-10 text-2xl font-bold text-center">ログインしてください</h1>
+        <h1 className="pb-10 text-center text-2xl font-bold">ログインしてください</h1>
         <LoginButton Icon={<GoogleIcon />} text="Google" onClick={signInWithGoogle} />
         <LoginButton Icon={<GitHubIcon />} text="GitHub" onClick={signInWithGitHub} />
       </div>

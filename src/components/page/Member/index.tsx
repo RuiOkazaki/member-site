@@ -33,7 +33,7 @@ export const Member: FC = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col flex-wrap gap-5 w-full">
+      <div className="flex w-full flex-col flex-wrap gap-5">
         <div className="pt-5">
           <Text weight="bold">コミッティー</Text>
           <div className="flex flex-wrap gap-5">{Committee}</div>
@@ -54,7 +54,7 @@ export const Member: FC = () => {
           <MemberCard />
         </div>
 
-        <div className="font-bold text-center">その他</div>
+        <div className="text-center font-bold">その他</div>
         <h1>Member</h1>
         <p>上に検索バー・分野・学年で絞れるようにする</p>
         <p>自分の興味のある分野を専門としているメンバー一覧</p>

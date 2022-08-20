@@ -10,8 +10,8 @@ type Props = {
 export const GitHubIcon: FC<Props> = ({ size, iconColor, className }) => {
   const classes = clsx([
     {
-      "w-8 h-8": size === "large",
-      "w-6 h-6": size === "small",
+      "h-8 w-8": size === "large",
+      "h-6 w-6": size === "small",
       "text-white": iconColor === "white",
       "text-gray-600": iconColor === "gray",
     },

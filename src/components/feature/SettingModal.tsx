@@ -94,7 +94,7 @@ export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, s
 
   const uploadImage = () => {
     if (percent === null) return;
-    if (percent !== 100) return <p className="px-2 font-bold text-blue-300 bg-slate-100 rounded-full">{percent}%</p>;
+    if (percent !== 100) return <p className="rounded-full bg-slate-100 px-2 font-bold text-blue-300">{percent}%</p>;
     return file && <Avatar src={window.URL.createObjectURL(file) ?? currentUser.photoURL} radius="xl" size={40} />;
   };
 
@@ -140,7 +140,7 @@ export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, s
             />
             <p className="font-bold">→</p>
             {uploadImage()}
-            <label htmlFor="settingImg" className="p-2 rounded-md border-2  border-dashed hover:cursor-pointer">
+            <label htmlFor="settingImg" className="rounded-md border-2 border-dashed  p-2 hover:cursor-pointer">
               <p className="text-gray-400 hover:text-gray-500">ファイルを選ぶ</p>
               <input
                 type="file"
