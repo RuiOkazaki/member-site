@@ -2,8 +2,11 @@
 import { FC, memo } from "react";
 import Link from "next/link";
 import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
-import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
+import { useCurrentUser } from "src/global-states/atoms";
 import { fieldDetailsData } from "src/components/utils/constants/field";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { FieldInterest } from "./FieldInterest";
+import { ProfileImg } from "./ProfileImg";
 
 type UniAndBioProps = {
   bio: string;
@@ -33,17 +36,6 @@ export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade 
         <p className="font-bold text-gray-400">自己紹介</p>
         <p className="w-full truncate">{bio}</p>
       </div>
-    </div>
-  );
-};
-
-type FieldInterestProps = {
-  field: string;
-};
-const FieldInterest: FC<FieldInterestProps> = ({ field }) => {
-  return (
-    <div className="w-28 whitespace-nowrap rounded-full bg-yellow-500 py-0.5 px-1 text-center  text-sm font-bold text-white">
-      <p>{field}</p>
     </div>
   );
 };
@@ -158,19 +150,6 @@ const Profile: FC<ProfileProps> = memo(({ size, isAdmin }) => {
   );
 });
 Profile.displayName = "Profile";
-
-type ProfileImgProps = {
-  displayName: string | undefined;
-  photoURL: string | undefined;
-};
-export const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
-  return (
-    <div>
-      <img src={photoURL} alt={`${displayName}の画像`} className={`w-12 rounded-full`} />
-      <p className="pt-1 text-xs ">{displayName}</p>
-    </div>
-  );
-};
 
 type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
 
