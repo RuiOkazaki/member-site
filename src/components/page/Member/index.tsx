@@ -64,10 +64,6 @@ export const Member: FC = () => {
             return <MemberCard data={user} key={index} />;
           })}
         </div>
-        <h1>Member</h1>
-        <p>上に検索バー・分野・学年で絞れるようにする</p>
-        <p>自分の興味のある分野を専門としているメンバー一覧</p>
-        <p>それぞれ閉じるボタンをつけれるようにする。</p>
       </div>
     </Layout>
   );
