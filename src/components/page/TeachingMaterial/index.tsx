@@ -31,7 +31,7 @@ export const TeachingMaterial: FC = () => {
           title="アルゴリズム"
           content={
             <div className="mt-2">
-              <AppLink title="Lesson01" href="https://github.com/TechUni2020/lesson01" />
+              <AppLink href="https://github.com/TechUni2020/lesson01">lesson01</AppLink>
             </div>
           }
         />
@@ -42,7 +42,7 @@ export const TeachingMaterial: FC = () => {
               {gitMaterialArray.map((material) => {
                 return (
                   <List.Item key={material.title}>
-                    <AppLink title={material.title} href={material.href} />
+                    <AppLink href={material.href}>{material.title}</AppLink>
                   </List.Item>
                 );
               })}
@@ -56,7 +56,7 @@ export const TeachingMaterial: FC = () => {
               {encryptionMaterialArray.map((material) => {
                 return (
                   <List.Item key={material.title}>
-                    <AppLink title={material.title} href={material.href} />
+                    <AppLink href={material.href}>{material.title}</AppLink>
                   </List.Item>
                 );
               })}
@@ -67,10 +67,9 @@ export const TeachingMaterial: FC = () => {
           title="初学者"
           content={
             <div className="mt-2">
-              <AppLink
-                title="エンジニア一年目とか関係なく知っておきたいこと"
-                href="https://www.notion.so/techuni/5066ce8f2453419faaec8008002ce623"
-              />
+              <AppLink href="https://www.notion.so/techuni/5066ce8f2453419faaec8008002ce623">
+                エンジニア一年目とか関係なく知っておきたいこと
+              </AppLink>
             </div>
           }
         />
