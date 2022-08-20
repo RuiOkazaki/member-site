@@ -29,7 +29,7 @@ export const Member: FC = () => {
   return (
     <Layout>
       <Suspense fallback={<AppLoading />}></Suspense>
-      <div className="flex flex-col flex-wrap gap-5 w-full">
+      <div className="flex w-full flex-col flex-wrap gap-5">
         <div className="pt-5">
           <Text weight="bold">コミッティー</Text>
           <div className="flex flex-wrap gap-5">
@@ -47,7 +47,7 @@ export const Member: FC = () => {
           {myField && (
             <>
               <Text weight="bold">{myField}を専門としているメンバー</Text>
-              <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
+              <div className="flex gap-2 rounded-md bg-white py-6 px-4 text-center font-bold shadow-md">
                 {users
                   .filter((user) => user.field === myField && user.uid !== currentUser.uid)
                   .map((user) => {
@@ -59,7 +59,7 @@ export const Member: FC = () => {
         </div>
 
         <Text weight="bold">全員</Text>
-        <div className="flex gap-2 py-6 px-4 font-bold text-center bg-white rounded-md shadow-md">
+        <div className="flex gap-2 rounded-md bg-white py-6 px-4 text-center font-bold shadow-md">
           {users.map((user, index) => {
             return <MemberCard data={user} key={index} />;
           })}

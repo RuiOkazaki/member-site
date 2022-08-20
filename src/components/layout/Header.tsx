@@ -24,11 +24,11 @@ export const NavItem: FC = memo(() => {
   };
 
   return (
-    <div className="flex gap-5 items-center">
-      <button onClick={handleNotificationModal} className="hover:text-gray-700 bg-white">
+    <div className="flex items-center gap-5">
+      <button onClick={handleNotificationModal} className="bg-white hover:text-gray-700">
         <BellIcon />
       </button>
-      <button className="hover:text-gray-700 bg-white">
+      <button className="bg-white hover:text-gray-700">
         <CalendarIcon />
       </button>
       <button onClick={handleSettingModal} className="rounded-full hover:opacity-90">
@@ -58,7 +58,7 @@ NavItem.displayName = "NavItem";
 
 export const Header: FC = memo(() => {
   return (
-    <header className="flex sticky top-0 z-10 justify-between items-center py-3 px-4 h-12 border-b">
+    <header className="sticky top-0 z-10 flex h-12 items-center justify-between border-b py-3 px-4">
       <Link href={LINKS.HOME}>
         <Image src={"/favicons/favicon-32x32.png"} width={32} height={32} alt="Tech.Uniアイコン" />
       </Link>

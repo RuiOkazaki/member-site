@@ -6,14 +6,14 @@ import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
 import { fieldDetailsData } from "src/components/utils/constants/field";
 
 type UniAndBioProps = {
-  bio: string | undefined;
-  university: string | undefined;
-  faculty: string | undefined | null;
-  grade: string | undefined | null;
+  bio: string;
+  university: string;
+  faculty: string | null;
+  grade: string | null;
 };
 export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade }) => {
   return (
-    <div className="py-1 px-2  rounded-lg">
+    <div className="rounded-lg py-1  px-2">
       <div className="flex">
         <div className="flex flex-col">
           <p className="font-bold text-gray-400">uni</p>
@@ -42,7 +42,7 @@ type FieldInterestProps = {
 };
 const FieldInterest: FC<FieldInterestProps> = ({ field }) => {
   return (
-    <div className="py-0.5 px-1 w-28 text-sm font-bold text-center text-white  whitespace-nowrap bg-yellow-500 rounded-full">
+    <div className="w-28 whitespace-nowrap rounded-full bg-yellow-500 py-0.5 px-1 text-center  text-sm font-bold text-white">
       <p>{field}</p>
     </div>
   );
@@ -58,15 +58,15 @@ export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) =
   return (
     <div>
       <FieldInterest field={field} />
-      <div className="flex flex-wrap items-center mt-1 w-48">
+      <div className="mt-1 flex w-48 flex-wrap items-center">
         {fieldDetails.map((fieldDetail, index) => {
           return (
-            <div className="flex justify-center items-center" key={index}>
+            <div className="flex items-center justify-center" key={index}>
               {fieldDetailsData.map((fieldDetailData) => {
                 if (fieldDetailData.value === fieldDetail) {
                   return (
                     <span
-                      className="flex justify-center items-center mx-1 w-2 h-2 rounded-full"
+                      className="mx-1 flex h-2 w-2 items-center justify-center rounded-full"
                       key={fieldDetailData.value}
                       style={{ backgroundColor: fieldDetailData.color }}
                     ></span>
@@ -95,7 +95,7 @@ export const MemberSNSLink: FC<MemberSNSLinkProps> = ({ github, twitter, instagr
   ];
 
   return (
-    <div className="flex justify-between px-2 w-[120px]">
+    <div className="flex w-[120px] justify-between px-2">
       {snsLinks.map((snsLink, index) => {
         if (snsLink.url) {
           return (
@@ -121,37 +121,37 @@ const Ribbon: FC<RibbonProps> = ({ position }) => {
   };
   return (
     <>
-      <div className="w-24 text-center bg-gradient-to-r from-pink-200 via-yellow-200 to-green-200">
+      <div className="w-24 bg-gradient-to-r from-pink-200 via-yellow-200 to-green-200 text-center">
         <h1 className="font-serif text-lg font-extrabold">{positionTitle(position)}</h1>
       </div>
     </>
   );
 };
 
-type ProfileProps = { size: number; isAdmin?: boolean };
+type ProfileProps = { size: string; isAdmin?: boolean };
 const Profile: FC<ProfileProps> = memo(({ size, isAdmin }) => {
   const { currentUser } = useCurrentUser();
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       {isAdmin ? (
         <>
-          <div className="flex justify-center items-center p-1 bg-gradient-to-r from-pink-200 via-yellow-200 to-green-200 rounded-full">
+          <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-pink-200 via-yellow-200 to-green-200 p-1">
             <img
               src={currentUser?.photoURL}
               alt={`${currentUser?.displayName}の画像`}
-              className={`rounded-full w-${size} h-${size}`}
+              className={`rounded-full ${size}`}
             />
           </div>
-          <p className="pt-1 text-lg font-bold text-center">{currentUser?.displayName}</p>
+          <p className="pt-1 text-center text-lg font-bold">{currentUser?.displayName}</p>
         </>
       ) : (
         <>
           <img
             src={currentUser?.photoURL}
             alt={`${currentUser?.displayName}の画像`}
-            className={`rounded-full w-${size}`}
+            className={`rounded-full ${size}`}
           />
-          <p className="pt-1 text-sm font-bold text-center">{currentUser?.displayName}</p>
+          <p className="pt-1 text-center text-sm font-bold">{currentUser?.displayName}</p>
         </>
       )}
     </div>
@@ -166,7 +166,7 @@ type ProfileImgProps = {
 export const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
   return (
     <div>
-      <img src={photoURL} alt={`${displayName}の画像`} className={`rounded-full w-12`} />
+      <img src={photoURL} alt={`${displayName}の画像`} className={`w-12 rounded-full`} />
       <p className="pt-1 text-xs ">{displayName}</p>
     </div>
   );
@@ -176,11 +176,11 @@ type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
 
 export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDetails }) => {
   return (
-    <div className="relative py-6 px-4 bg-white hover:bg-slate-50 rounded-md shadow-md hover:cursor-pointer">
-      <div className="flex flex-col justify-center items-center">
+    <div className="relative rounded-md bg-white py-6 px-4 shadow-md hover:cursor-pointer hover:bg-slate-50">
+      <div className="flex flex-col items-center justify-center">
         <Ribbon position={position} />
         <div className="items-center pt-2">
-          <Profile size={24} isAdmin />
+          <Profile size={"w-24 h-24"} isAdmin />
         </div>
       </div>
       <div className="px-2">
@@ -193,10 +193,10 @@ ComitteeCard.displayName = "ComitteeCard";
 
 export const ActiveMemberCard = () => {
   return (
-    <div className="relative py-6 px-4  w-[36em] bg-white hover:bg-gray-50 rounded-md shadow-md">
-      <div className="grid grid-cols-5 grid-flow-row">
-        <div className="flex flex-col justify-between items-center">
-          <Profile size={16} isAdmin={false} />
+    <div className="relative w-[36em] rounded-md  bg-white py-6 px-4 shadow-md hover:bg-gray-50">
+      <div className="grid grid-flow-row grid-cols-5">
+        <div className="flex flex-col items-center justify-between">
+          <Profile size={"w-16 h-16"} isAdmin={false} />
           <FieldInterest field="フロントエンド" />
         </div>
       </div>
