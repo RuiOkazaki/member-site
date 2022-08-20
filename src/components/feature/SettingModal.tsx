@@ -7,7 +7,8 @@ import { toast } from "react-hot-toast";
 import { CurrentUser } from "src/global-states/atoms";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { auth, db } from "../utils/libs/firebase";
-import { facultyData, fieldDetailsData, gradeData, interestData } from "../utils/constants/university";
+import { facultyData, gradeData } from "../utils/constants/university";
+import { fieldDetailsData, interestData } from "../utils/constants/field";
 import {
   GitHubIcon,
   InfoIcon,
@@ -234,7 +235,7 @@ export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, s
             onChange={(e) => setFormData({ ...formData, field: e })}
           />
           <MultiSelect
-            label="よく使用するフレームワーク・ライブラリー"
+            label="よく使用する言語・フレームワーク・ライブラリー"
             placeholder="Next.js"
             searchable
             nothingFound="見つかりませんでした。"

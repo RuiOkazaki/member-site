@@ -24,37 +24,11 @@ export const facultyData = [
 ];
 
 export const gradeData = [
-  { value: "1", label: "1年生" },
-  { value: "2", label: "2年生" },
-  { value: "3", label: "3年生" },
-  { value: "4", label: "4年生" },
-  { value: "5", label: "修士1年生" },
-  { value: "6", label: "修士2年生" },
-];
-
-export const interestData = [
-  { value: "フロントエンド", label: "フロントエンド" },
-  { value: "ios", label: "ios" },
-  { value: "バックエンド", label: "バックエンド" },
-  { value: "サーバーサイド", label: "サーバーサイド" },
-  { value: "機械学習", label: "機械学習" },
-  { value: "データサイエンス", label: "データサイエンス" },
-  { value: "ロボット", label: "ロボット" },
-];
-
-export const fieldDetailsData = [
-  { value: "React", label: "React" },
-  { value: "Vue", label: "Vue" },
-  { value: "Angular", label: "Angular" },
-  { value: "TypeScript", label: "TypeScript" },
-  { value: "Next.js", label: "Next.js" },
-  { value: "Node.js", label: "Node.js" },
-  { value: "Express", label: "Express" },
-  { value: "MySQL", label: "MySQL" },
-  { value: "React Native", label: "React Native" },
-  { value: "PostgreSQL", label: "PostgreSQL" },
-  { value: "SQLite", label: "SQLite" },
-  { value: "Firebase", label: "Firebase" },
-  { value: "AWS", label: "AWS" },
-  { value: "GCP", label: "GCP" },
+  { value: "1年生", label: "1年生" },
+  { value: "2年生", label: "2年生" },
+  { value: "3年生", label: "3年生" },
+  { value: "4年生", label: "4年生" },
+  { value: "修士1年生", label: "修士1年生" },
+  { value: "修士1年生", label: "修士2年生" },
+  { value: "その他", label: "その他" },
 ];
