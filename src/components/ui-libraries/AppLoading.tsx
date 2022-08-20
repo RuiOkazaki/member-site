@@ -3,7 +3,7 @@ import { FC } from "react";
 
 export const AppLoading: FC = () => {
   return (
-    <div className="flex justify-center mt-4 h-screen">
+    <div className="mt-4 flex h-screen justify-center">
       <Loader />
     </div>
   );
