@@ -13,12 +13,6 @@ const Member = () => {
   const { currentUser } = useCurrentUser();
   const myField = currentUser?.field;
 
-  const distinctLeaderPosition = (user: CurrentUser) => {
-    if (user.position === 3 || user.position === 4 || user.position === 5) {
-      return true;
-    }
-  };
-
   useEffect(() => {
     try {
       const getUsers = async () => {
@@ -41,7 +35,10 @@ const Member = () => {
           <Text weight="bold">コミッティー</Text>
           <div className="flex flex-wrap gap-5">
             {users
-              .filter((user) => distinctLeaderPosition(user))
+              .filter((user) => {
+                const isDistinctLeaderPosition = user.position === 3 || user.position === 4 || user.position === 5;
+                return isDistinctLeaderPosition;
+              })
               .map((user) => (
                 <ComitteeCard key={user.displayName} {...user} />
               ))}
