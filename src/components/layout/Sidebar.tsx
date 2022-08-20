@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-import { HomeIcon, UsersIcon, TextIcon, StudyMeetingIcon, MemberIcon } from "../ui-libraries/icon";
+import { HomeIcon, UsersIcon, TextIcon, StudyMeetingIcon, MemberIcon, EventIcon } from "../ui-libraries/icon";
 import { LINKS } from "../utils/constants/link";
 
 type MenuType = {
@@ -11,10 +11,11 @@ type MenuType = {
 
 const MENU: MenuType = [
   { icon: <HomeIcon />, label: "ホーム", href: LINKS.HOME },
-  { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
-  { icon: <TextIcon />, label: "教材", href: LINKS.TEACHINGMATERIAL },
+  { icon: <EventIcon />, label: "イベント", href: LINKS.EVENT },
   { icon: <StudyMeetingIcon />, label: "勉強会", href: LINKS.STUDYMEETING },
   { icon: <UsersIcon />, label: "1on1", href: LINKS.ONEONONE },
+  { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
+  { icon: <TextIcon />, label: "教材", href: LINKS.TEACHINGMATERIAL },
 ];
 
 export const SideBar: FC = () => {

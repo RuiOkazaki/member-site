@@ -1,7 +1,8 @@
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect, useState } from "react";
-import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
+import { useCurrentUser } from "src/global-states/atoms";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
 import { LINKS } from "../utils/constants/link";
 import { UID } from "../utils/constants/tokens";
 import { db } from "../utils/libs/firebase";
