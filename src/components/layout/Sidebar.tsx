@@ -1,16 +1,23 @@
 import Link from "next/link";
+import { FC } from "react";
 import { HomeIcon, UsersIcon, TextIcon, StudyMeetingIcon, MemberIcon } from "../ui-libraries/icon";
 import { LINKS } from "../utils/constants/link";
 
-const MENU = [
+type MenuType = {
+  icon: JSX.Element;
+  label: string;
+  href: string;
+}[];
+
+const MENU: MenuType = [
   { icon: <HomeIcon />, label: "ホーム", href: LINKS.HOME },
   { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
-  { icon: <TextIcon />, label: "教材", href: LINKS.TEXT },
+  { icon: <TextIcon />, label: "教材", href: LINKS.TEACHINGMATERIAL },
   { icon: <StudyMeetingIcon />, label: "勉強会", href: LINKS.STUDYMEETING },
   { icon: <UsersIcon />, label: "1on1", href: LINKS.ONEONONE },
 ];
 
-export const SideBar = () => {
+export const SideBar: FC = () => {
   return (
     <div>
       <aside className="flex sticky top-10 flex-col justify-between  h-[calc(100vh-3rem)] border-r">
