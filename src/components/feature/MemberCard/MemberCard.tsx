@@ -4,38 +4,7 @@ import Link from "next/link";
 import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
 import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
 import { fieldDetailsData } from "src/components/utils/constants/field";
-
-type UniAndBioProps = {
-  bio: string;
-  university: string;
-  faculty: string | null;
-  grade: string | null;
-};
-export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade }) => {
-  return (
-    <div className="rounded-lg py-1  px-2">
-      <div className="flex">
-        <div className="flex flex-col">
-          <p className="font-bold text-gray-400">uni</p>
-          <p>{university}</p>
-        </div>
-        <div className="px-2">
-          <p className="font-bold text-gray-400">faculty</p>
-          <p>{faculty}</p>
-        </div>
-        <div className="px-2">
-          <p className="font-bold text-gray-400">grade</p>
-          <span>{grade}</span>
-        </div>
-      </div>
-
-      <div className="mt-2">
-        <p className="font-bold text-gray-400">自己紹介</p>
-        <p className="w-full truncate">{bio}</p>
-      </div>
-    </div>
-  );
-};
+import { MemberProfileIcon } from "./MemberProfileIcon";
 
 type FieldInterestProps = {
   field: string;
@@ -159,19 +128,6 @@ const Profile: FC<ProfileProps> = memo(({ size, isAdmin }) => {
 });
 Profile.displayName = "Profile";
 
-type ProfileImgProps = {
-  displayName: string | undefined;
-  photoURL: string | undefined;
-};
-export const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
-  return (
-    <div>
-      <img src={photoURL} alt={`${displayName}の画像`} className={`w-12 rounded-full`} />
-      <p className="pt-1 text-xs ">{displayName}</p>
-    </div>
-  );
-};
-
 type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
 
 export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDetails }) => {
@@ -193,7 +149,7 @@ ComitteeCard.displayName = "ComitteeCard";
 
 export const ActiveMemberCard = () => {
   return (
-    <div className="relative w-[36em] rounded-md  bg-white py-6 px-4 shadow-md hover:bg-gray-50">
+    <div className="relative w-[36em] rounded-md bg-white py-6 px-4 shadow-md hover:bg-gray-50">
       <div className="grid grid-flow-row grid-cols-5">
         <div className="flex flex-col items-center justify-between">
           <Profile size={"w-16 h-16"} isAdmin={false} />
@@ -204,13 +160,15 @@ export const ActiveMemberCard = () => {
   );
 };
 
-type MemberCardProps = { data: Pick<CurrentUser, "displayName" | "photoURL" | "uid"> };
+type MemberCardProps = {
+  data: Pick<CurrentUser, "displayName" | "photoURL" | "uid">;
+};
+
 export const MemberCard: FC<MemberCardProps> = ({ data }) => {
-  if (!data) return null;
   return (
     <Link href={`member/${data.uid}`} className="cursor-pointer">
       <a>
-        <ProfileImg displayName={data.displayName} photoURL={data?.photoURL} />
+        <MemberProfileIcon displayName={data.displayName} photoURL={data?.photoURL} />
       </a>
     </Link>
   );
