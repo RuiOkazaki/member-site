@@ -10,7 +10,7 @@ export type EventType = {
     title: string;
   };
   organizerUuid: string;
-  participantsUuid: [];
+  participantsUuid: string[];
   photoUrl: string;
   title: string;
 };
