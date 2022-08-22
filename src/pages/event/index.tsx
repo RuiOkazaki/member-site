@@ -1,8 +1,8 @@
-import { Event } from "src/components/page/Event";
+import { Events } from "src/components/page/Events";
 import type { NextPage } from "next";
 
-const EventPage: NextPage = () => {
-  return <Event />;
+const EventsPage: NextPage = () => {
+  return <Events />;
 };
 
-export default EventPage;
+export default EventsPage;

@@ -3,14 +3,14 @@ import { Text } from "@mantine/core";
 import { FC, Suspense, useEffect, useState } from "react";
 import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
-import { CurrentUser, EventType } from "src/components/utils/libs/firebase/index";
+import { CurrentUser, Event } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
 import { useCurrentUser } from "src/global-states/atoms";
 import { BoxWithText } from "src/components/ui-libraries/BoxWithText";
 import { FieldInterest } from "src/components/feature/MemberCard/FieldInterest";
 import { ProfileImg } from "src/components/feature/MemberCard/ProfileImg";
 
-type EventCardProps = Omit<EventType, "materials" | "participantsUuid"> & { isEmpty?: boolean };
+type EventCardProps = Omit<Event, "materials" | "participantsUuid"> & { isEmpty?: boolean };
 export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, photoUrl, title, isEmpty }) => {
   const timeStamp = { date };
   const fullDate = new Date(timeStamp.date.seconds * 1000).toLocaleString("ja-JP");
@@ -52,8 +52,8 @@ export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, phot
   );
 };
 
-export const Event: FC = () => {
-  const [events, setEvents] = useState<EventType[]>([]);
+export const Events: FC = () => {
+  const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { currentUser } = useCurrentUser();
 
@@ -67,7 +67,7 @@ export const Event: FC = () => {
       const getEvents = async () => {
         const colRef = collection(db, "study-meeting");
         const events = await getDocs(colRef);
-        const newEvents = events.docs.map((doc) => doc.data() as EventType);
+        const newEvents = events.docs.map((doc) => doc.data() as Event);
         setEvents(newEvents);
       };
       getEvents();

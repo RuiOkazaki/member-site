@@ -1,4 +1,4 @@
-export type EventType = {
+export type Event = {
   date: {
     seconds: number;
     nanoseconds: number;
