@@ -1,9 +1,10 @@
 export const LINKS = {
   HOME: "/",
-  MEMBER: "/member",
+  EVENT: "/event",
   TEACHINGMATERIAL: "/teaching-material",
   STUDYMEETING: "/study-meeting",
   ONEONONE: "/one-on-one",
+  MEMBER: "/member",
   SIGNUP: "/signup",
   LOGIN: "/login",
 };

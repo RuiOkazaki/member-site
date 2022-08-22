@@ -2,17 +2,39 @@
 import { FC, memo } from "react";
 import Link from "next/link";
 import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
-import { CurrentUser, useCurrentUser } from "src/global-states/atoms";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
 import { fieldDetailsData } from "src/components/utils/constants/field";
+import { FieldInterest } from "./FieldInterest";
 import { MemberProfileIcon } from "./MemberProfileIcon";
 
-type FieldInterestProps = {
-  field: string;
+type UniAndBioProps = {
+  bio: string;
+  university: string;
+  faculty: string | null;
+  grade: string | null;
 };
-const FieldInterest: FC<FieldInterestProps> = ({ field }) => {
+export const UniAndBio: FC<UniAndBioProps> = ({ bio, university, faculty, grade }) => {
   return (
-    <div className="w-28 whitespace-nowrap rounded-full bg-yellow-500 py-0.5 px-1 text-center  text-sm font-bold text-white">
-      <p>{field}</p>
+    <div className="rounded-lg py-1  px-2">
+      <div className="flex">
+        <div className="flex flex-col">
+          <p className="font-bold text-gray-400">uni</p>
+          <p>{university}</p>
+        </div>
+        <div className="px-2">
+          <p className="font-bold text-gray-400">faculty</p>
+          <p>{faculty}</p>
+        </div>
+        <div className="px-2">
+          <p className="font-bold text-gray-400">grade</p>
+          <span>{grade}</span>
+        </div>
+      </div>
+
+      <div className="mt-2">
+        <p className="font-bold text-gray-400">自己紹介</p>
+        <p className="w-full truncate">{bio}</p>
+      </div>
     </div>
   );
 };
@@ -97,30 +119,21 @@ const Ribbon: FC<RibbonProps> = ({ position }) => {
   );
 };
 
-type ProfileProps = { size: string; isAdmin?: boolean };
-const Profile: FC<ProfileProps> = memo(({ size, isAdmin }) => {
-  const { currentUser } = useCurrentUser();
+type ProfileProps = { size: string; isAdmin?: boolean } & Pick<CurrentUser, "photoURL" | "displayName">;
+const Profile: FC<ProfileProps> = memo(({ size, isAdmin, photoURL, displayName }) => {
   return (
     <div className="flex flex-col items-center justify-center">
       {isAdmin ? (
         <>
           <div className="flex items-center justify-center rounded-full bg-gradient-to-r from-pink-200 via-yellow-200 to-green-200 p-1">
-            <img
-              src={currentUser?.photoURL}
-              alt={`${currentUser?.displayName}の画像`}
-              className={`rounded-full ${size}`}
-            />
+            <img src={photoURL} alt={`${displayName}の画像`} className={`rounded-full ${size}`} />
           </div>
-          <p className="pt-1 text-center text-lg font-bold">{currentUser?.displayName}</p>
+          <p className="pt-1 text-center text-lg font-bold">{displayName}</p>
         </>
       ) : (
         <>
-          <img
-            src={currentUser?.photoURL}
-            alt={`${currentUser?.displayName}の画像`}
-            className={`rounded-full ${size}`}
-          />
-          <p className="pt-1 text-center text-sm font-bold">{currentUser?.displayName}</p>
+          <img src={photoURL} alt={`${displayName}の画像`} className={`rounded-full ${size}`} />
+          <p className="pt-1 text-center text-sm font-bold">{displayName}</p>
         </>
       )}
     </div>
@@ -130,13 +143,13 @@ Profile.displayName = "Profile";
 
 type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
 
-export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDetails }) => {
+export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDetails, photoURL, displayName }) => {
   return (
     <div className="relative rounded-md bg-white py-6 px-4 shadow-md hover:cursor-pointer hover:bg-slate-50">
       <div className="flex flex-col items-center justify-center">
         <Ribbon position={position} />
         <div className="items-center pt-2">
-          <Profile size={"w-24 h-24"} isAdmin />
+          <Profile size={"w-24 h-24"} isAdmin photoURL={photoURL} displayName={displayName} />
         </div>
       </div>
       <div className="px-2">
@@ -146,19 +159,6 @@ export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDe
   );
 });
 ComitteeCard.displayName = "ComitteeCard";
-
-export const ActiveMemberCard = () => {
-  return (
-    <div className="relative w-[36em] rounded-md bg-white py-6 px-4 shadow-md hover:bg-gray-50">
-      <div className="grid grid-flow-row grid-cols-5">
-        <div className="flex flex-col items-center justify-between">
-          <Profile size={"w-16 h-16"} isAdmin={false} />
-          <FieldInterest field="フロントエンド" />
-        </div>
-      </div>
-    </div>
-  );
-};
 
 type MemberCardProps = {
   data: Pick<CurrentUser, "displayName" | "photoURL" | "uid">;

@@ -4,7 +4,6 @@ import { doc, DocumentReference, updateDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
-import { CurrentUser } from "src/global-states/atoms";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { auth, db } from "../utils/libs/firebase";
 import { facultyData, gradeData } from "../utils/constants/university";
@@ -20,6 +19,7 @@ import {
 } from "../ui-libraries/icon";
 import { AppButton } from "../ui-libraries/AppButton";
 import { LINKS } from "../utils/constants/link";
+import { CurrentUser } from "../utils/libs/firebase/index";
 
 type Props = {
   currentUser: CurrentUser;

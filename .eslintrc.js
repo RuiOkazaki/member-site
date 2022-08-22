@@ -16,5 +16,6 @@ module.exports = {
         groups: ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
       },
     ],
+    "@next/next/no-img-element": "off",
   },
 };

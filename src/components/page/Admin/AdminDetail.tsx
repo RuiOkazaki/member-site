@@ -1,10 +1,10 @@
 import { doc, getDoc } from "firebase/firestore";
 import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { InterestGroup, MemberSNSLink } from "src/components/feature/MemberCard/MemberCard";
-import { MemberProfileIcon } from "src/components/feature/MemberCard/MemberProfileIcon";
+import { InterestGroup, MemberSNSLink } from "src/components/feature/Member/MemberCard";
+import { MemberProfileIcon } from "src/components/feature/Member/MemberProfileIcon";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser } from "src/global-states/atoms";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { Layout } from "src/components/layout";
 import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";

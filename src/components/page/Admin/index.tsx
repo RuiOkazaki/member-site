@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { Layout } from "src/components/layout";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser } from "src/global-states/atoms";
+import { CurrentUser } from "src/components/utils/libs/firebase/index";
 
 export const Admin: FC = () => {
   const [users, setUsers] = useState<CurrentUser[]>([]);
