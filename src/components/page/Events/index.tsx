@@ -7,11 +7,13 @@ import { CurrentUser, Event } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
 import { useCurrentUser } from "src/global-states/atoms";
 import { BoxWithText } from "src/components/ui-libraries/BoxWithText";
-import { FieldInterest } from "src/components/feature/MemberCard/FieldInterest";
-import { ProfileImg } from "src/components/feature/MemberCard/ProfileImg";
+import { FieldInterest } from "src/components/feature/Member/FieldInterest";
+import { ProfileImg } from "src/components/feature/Member/ProfileImg";
 
-type EventCardProps = Omit<Event, "materials" | "participantsUuid"> & { isEmpty?: boolean };
-export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, photoUrl, title, isEmpty }) => {
+type EventCardProps = Omit<Event, "materials" | "participantsUuid">;
+export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, photoUrl, title }) => {
+  const [loading, setLoading] = useState<boolean>(true);
+  // todo: timestamp変換処理リファクタ
   const timeStamp = { date };
   const fullDate = new Date(timeStamp.date.seconds * 1000).toLocaleString("ja-JP");
   const year = fullDate.slice(0, 4);
@@ -28,14 +30,22 @@ export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, phot
       setOrganizer(organizer as CurrentUser);
     };
     getOrganizer();
-  }, [organizerUuid]);
+    setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading) {
+    return <AppLoading />;
+  }
 
   return (
     <BoxWithText
       title={title}
       content={
         <div>
-          {isEmpty ?? <img src={photoUrl} alt={title} className="w-[25rem] rounded" />}
+          <div className="">
+            {photoUrl !== null && <img src={photoUrl} alt={title} className="w-[25rem] rounded" />}
+          </div>
           <div className="flex gap-4">
             <Text size="sm" weight="bold" color="gray">
               {year}.{monthAndDate}.{time}

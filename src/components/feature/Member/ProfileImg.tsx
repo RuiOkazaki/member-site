@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-type ProfileImgProps = {
+type Props = {
   displayName: string | undefined;
   photoURL: string | undefined;
 };
-export const ProfileImg: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
+export const ProfileImg: FC<Props> = ({ displayName, photoURL }) => {
   return (
     <div>
       <img src={photoURL} alt={`${displayName}の画像`} className={`w-12 rounded-full`} />

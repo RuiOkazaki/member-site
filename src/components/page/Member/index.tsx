@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect, FC, Suspense } from "react";
 import { Text } from "@mantine/core";
-import { ComitteeCard, MemberCard } from "src/components/feature/MemberCard/MemberCard";
+import { ComitteeCard, MemberCard } from "src/components/feature/Member/MemberCard";
 import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { db } from "src/components/utils/libs/firebase";
