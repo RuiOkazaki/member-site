@@ -6,7 +6,7 @@ import { useCurrentUser } from "src/global-states/atoms";
 import { fieldDetailsData } from "src/components/utils/constants/field";
 import { CurrentUser } from "src/components/utils/libs/firebase/index";
 import { FieldInterest } from "./FieldInterest";
-import { ProfileImg } from "./ProfileImg";
+import { MemberProfileIcon } from "./MemberProfileIcon";
 
 type UniAndBioProps = {
   bio: string;
@@ -172,7 +172,7 @@ ComitteeCard.displayName = "ComitteeCard";
 
 export const ActiveMemberCard = () => {
   return (
-    <div className="relative w-[36em] rounded-md  bg-white py-6 px-4 shadow-md hover:bg-gray-50">
+    <div className="relative w-[36em] rounded-md bg-white py-6 px-4 shadow-md hover:bg-gray-50">
       <div className="grid grid-flow-row grid-cols-5">
         <div className="flex flex-col items-center justify-between">
           <Profile size={"w-16 h-16"} isAdmin={false} />
@@ -183,13 +183,15 @@ export const ActiveMemberCard = () => {
   );
 };
 
-type MemberCardProps = { data: Pick<CurrentUser, "displayName" | "photoURL" | "uid"> };
+type MemberCardProps = {
+  data: Pick<CurrentUser, "displayName" | "photoURL" | "uid">;
+};
+
 export const MemberCard: FC<MemberCardProps> = ({ data }) => {
-  if (!data) return null;
   return (
     <Link href={`member/${data.uid}`} className="cursor-pointer">
       <a>
-        <ProfileImg displayName={data.displayName} photoURL={data?.photoURL} />
+        <MemberProfileIcon displayName={data.displayName} photoURL={data?.photoURL} />
       </a>
     </Link>
   );

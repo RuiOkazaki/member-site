@@ -30,7 +30,7 @@ type Props = {
 
 export type FormData = Omit<CurrentUser, "uid" | "createdAt" | "id" | "active">;
 
-export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, setOpened }) => {
+export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUser, opened, setOpened }) => {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
     bio: currentUser.bio,
@@ -296,5 +296,3 @@ export const SettingModal: FC<Props> = ({ currentUser, setCurrentUser, opened, s
     </MantineModal>
   );
 };
-
-// todo: 最も興味のある分野を選んだら、fieldDetailsが連動するようにする
