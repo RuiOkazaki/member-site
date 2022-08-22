@@ -25,3 +25,9 @@ export const fieldDetailsData = [
   { value: "AWS", label: "AWS", color: "black" },
   { value: "GCP", label: "GCP", color: "red" },
 ];
+
+export const statusData = [
+  { value: "0", label: "審査中" },
+  { value: "1", label: "登録済み" },
+  { value: "2", label: "退会済み" },
+];

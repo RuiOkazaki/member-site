@@ -5,9 +5,9 @@ import Image from "next/image";
 import { Avatar } from "@mantine/core";
 import { useCurrentUser } from "src/global-states/atoms";
 import { BellIcon, CalendarIcon } from "../ui-libraries/icon";
-import { SettingModal } from "../feature/SettingModal";
 import { LINKS } from "../utils/constants/link";
 import { NotificationModal } from "../feature/NotificationModal";
+import { ProfileEditContentsModal } from "../feature/ProfileEditContentsModal";
 
 export const NavItem: FC = memo(() => {
   const { currentUser, setCurrentUser } = useCurrentUser();
@@ -44,7 +44,7 @@ export const NavItem: FC = memo(() => {
           <Avatar src={null} radius="xl" size={40} className="hover:opacity-80" alt="ゲスト" />
         )}
       </button>
-      <SettingModal
+      <ProfileEditContentsModal
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
         opened={settingOpened}
