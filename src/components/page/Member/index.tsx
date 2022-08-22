@@ -27,6 +27,10 @@ export const Member: FC = () => {
     }
   }, [isLoading]);
 
+  if (!currentUser) return null;
+  const myFieldMembers = users.filter((user) => user.field === myField && user.uid !== currentUser.uid);
+  console.log(myFieldMembers.length);
+
   return (
     <Layout>
       <Suspense fallback={<AppLoading />}></Suspense>
@@ -39,28 +43,23 @@ export const Member: FC = () => {
                 const isDistinctLeaderPosition = user.position === 3 || user.position === 4 || user.position === 5;
                 return isDistinctLeaderPosition;
               })
-              .map((user) => (
-                <ComitteeCard key={user.displayName} {...user} />
+              .map((user, index) => (
+                <ComitteeCard key={index} {...user} />
               ))}
           </div>
         </div>
         <div>
-          {myField && (
-            <>
-              <Text weight="bold">{myField}を専門としているメンバー</Text>
-              <div className="flex gap-2 rounded-md bg-white py-6 px-4 text-center font-bold shadow-md">
-                {users
-                  .filter((user) => user.field === myField && user.uid !== currentUser.uid)
-                  .map((user) => {
-                    return <MemberCard key={user.displayName} data={user} />;
-                  })}
-              </div>
-            </>
-          )}
+          <Text weight="bold">{myField}を専門としているメンバー</Text>
+          <div className="flex gap-2 rounded-md bg-white py-6 px-4 shadow-md">
+            {myFieldMembers.length === 0 && <Text>いないようです😭</Text>}
+            {myFieldMembers.map((user) => {
+              return <MemberCard key={user.displayName} data={user} />;
+            })}
+          </div>
         </div>
 
         <Text weight="bold">全員</Text>
-        <div className="flex gap-2 rounded-md bg-white py-6 px-4 text-center font-bold shadow-md">
+        <div className="flex gap-2 rounded-md bg-white py-6 px-4 shadow-md">
           {users.map((user, index) => {
             return <MemberCard data={user} key={index} />;
           })}
