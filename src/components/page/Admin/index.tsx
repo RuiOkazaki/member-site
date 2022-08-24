@@ -4,10 +4,10 @@ import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { Layout } from "src/components/layout";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { User } from "src/components/utils/libs/firebase/index";
 
 export const Admin: FC = () => {
-  const [users, setUsers] = useState<CurrentUser[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const Admin: FC = () => {
       const getUsers = async () => {
         const colRef = collection(db, "users");
         const users = await getDocs(colRef);
-        setUsers(users.docs.map((doc) => doc.data() as CurrentUser));
+        setUsers(users.docs.map((doc) => doc.data() as User));
       };
       getUsers();
     } finally {

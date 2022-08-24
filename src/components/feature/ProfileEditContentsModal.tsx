@@ -19,16 +19,16 @@ import {
 } from "../ui-libraries/icon";
 import { AppButton } from "../ui-libraries/AppButton";
 import { LINKS } from "../utils/constants/link";
-import { CurrentUser } from "../utils/libs/firebase/index";
+import { User } from "../utils/libs/firebase/index";
 
 type Props = {
-  currentUser: CurrentUser;
-  setCurrentUser: (currentUser: CurrentUser) => void;
+  currentUser: User;
+  setCurrentUser: (currentUser: User) => void;
   opened: boolean;
   setOpened: () => void;
 };
 
-export type FormData = Omit<CurrentUser, "uid" | "createdAt" | "id" | "active">;
+export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
 export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUser, opened, setOpened }) => {
   const router = useRouter();
@@ -67,7 +67,7 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
     university,
   } = formData;
 
-  const userRef = doc(db, "users", currentUser.uid) as DocumentReference<CurrentUser>;
+  const userRef = doc(db, "users", currentUser.uid) as DocumentReference<User>;
 
   const handleSave = async () => {
     setCurrentUser({

@@ -6,10 +6,10 @@ import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { db } from "src/components/utils/libs/firebase";
 import { useCurrentUser } from "src/global-states/atoms";
-import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { User } from "src/components/utils/libs/firebase/index";
 
 export const Member: FC = () => {
-  const [users, setUsers] = useState<CurrentUser[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { currentUser } = useCurrentUser();
   const myField = currentUser?.field;
@@ -19,7 +19,7 @@ export const Member: FC = () => {
       const getUsers = async () => {
         const colRef = collection(db, "users");
         const users = await getDocs(colRef);
-        setUsers(users.docs.map((doc) => doc.data() as CurrentUser));
+        setUsers(users.docs.map((doc) => doc.data() as User));
       };
       getUsers();
     } finally {

@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { Layout } from "src/components/layout";
 import { db } from "src/components/utils/libs/firebase";
-import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { User } from "src/components/utils/libs/firebase/index";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { MemberProfileIcon } from "src/components/feature/Member/MemberProfileIcon";
 import { InterestGroup, MemberSNSLink } from "src/components/feature/Member/MemberCard";
 
 export const MemberDetail = () => {
-  const [user, setUser] = useState<CurrentUser>();
+  const [user, setUser] = useState<User>();
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
@@ -19,7 +19,7 @@ export const MemberDetail = () => {
         const getUser = async () => {
           const docRef = doc(db, `users/${router.query.id}`);
           const user = (await getDoc(docRef)).data();
-          setUser(user as CurrentUser);
+          setUser(user as User);
         };
         getUser();
       } finally {

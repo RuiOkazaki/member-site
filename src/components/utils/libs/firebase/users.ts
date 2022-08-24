@@ -1,4 +1,4 @@
-export type CurrentUser = {
+export type User = {
   active: boolean | undefined;
   bio: string;
   createdAt: Date;
