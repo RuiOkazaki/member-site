@@ -2,7 +2,7 @@
 import { FC, memo } from "react";
 import Link from "next/link";
 import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
-import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { User } from "src/components/utils/libs/firebase/index";
 import { fieldDetailsData } from "src/components/utils/constants/field";
 import { FieldInterest } from "./FieldInterest";
 import { MemberProfileIcon } from "./MemberProfileIcon";
@@ -119,7 +119,7 @@ const Ribbon: FC<RibbonProps> = ({ position }) => {
   );
 };
 
-type ProfileProps = { size: string; isAdmin?: boolean } & Pick<CurrentUser, "photoURL" | "displayName">;
+type ProfileProps = { size: string; isAdmin?: boolean } & Pick<User, "photoURL" | "displayName">;
 const Profile: FC<ProfileProps> = memo(({ size, isAdmin, photoURL, displayName }) => {
   return (
     <div className="flex flex-col items-center justify-center">
@@ -141,7 +141,7 @@ const Profile: FC<ProfileProps> = memo(({ size, isAdmin, photoURL, displayName }
 });
 Profile.displayName = "Profile";
 
-type AdminCardProps = Omit<CurrentUser, "uid" | "createdAt" | "email">;
+type AdminCardProps = Omit<User, "uid" | "createdAt" | "email">;
 
 export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDetails, photoURL, displayName }) => {
   return (
@@ -161,7 +161,7 @@ export const ComitteeCard: FC<AdminCardProps> = memo(({ field, position, fieldDe
 ComitteeCard.displayName = "ComitteeCard";
 
 type MemberCardProps = {
-  data: Pick<CurrentUser, "displayName" | "photoURL" | "uid">;
+  data: Pick<User, "displayName" | "photoURL" | "uid">;
 };
 
 export const MemberCard: FC<MemberCardProps> = ({ data }) => {

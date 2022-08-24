@@ -3,7 +3,7 @@ import { Text } from "@mantine/core";
 import { FC, Suspense, useEffect, useState } from "react";
 import { Layout } from "src/components/layout";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
-import { CurrentUser, Event } from "src/components/utils/libs/firebase/index";
+import { User, Event } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
 import { useCurrentUser } from "src/global-states/atoms";
 import { BoxWithText } from "src/components/ui-libraries/BoxWithText";
@@ -21,13 +21,13 @@ export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, phot
   const time = fullDate.slice(9, 14);
 
   // organizerの情報を取得
-  const [organizer, setOrganizer] = useState<CurrentUser>();
+  const [organizer, setOrganizer] = useState<User>();
   useEffect(() => {
     const getOrganizer = async () => {
       const colRef = collection(db, "users");
       const users = await getDocs(colRef);
       const organizer = users.docs.map((doc) => doc.data()).find((user) => user.uid === organizerUuid);
-      setOrganizer(organizer as CurrentUser);
+      setOrganizer(organizer as User);
     };
     getOrganizer();
     setLoading(false);

@@ -1,14 +1,14 @@
 import { atom, useRecoilState } from "recoil";
-import { CurrentUser } from "src/components/utils/libs/firebase/users";
+import { User } from "src/components/utils/libs/firebase/users";
 
-export const currentUserState = atom<CurrentUser | null>({
+export const currentUserState = atom<User | null>({
   key: "currentUserState",
   default: null,
 });
 
 type UseCurrentUserType = {
-  currentUser: CurrentUser | null;
-  setCurrentUser: (currentUser: CurrentUser | null) => void;
+  currentUser: User | null;
+  setCurrentUser: (currentUser: User | null) => void;
 };
 
 export const useCurrentUser = (): UseCurrentUserType => {

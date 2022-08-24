@@ -1,23 +1,23 @@
 import { FC, useState } from "react";
 import { Modal as MantineModal, Select } from "@mantine/core";
 import { doc, DocumentReference, updateDoc } from "firebase/firestore";
-import { CurrentUser } from "src/components/utils/libs/firebase/index";
+import { User } from "src/components/utils/libs/firebase/index";
 import { db } from "../utils/libs/firebase";
 import { statusData } from "../utils/constants/field";
 import { AppButton } from "../ui-libraries/AppButton";
 
 type Props = {
-  user: CurrentUser;
+  user: User;
   opened: boolean;
   setOpened: () => void;
 };
 
-export type FormData = Omit<CurrentUser, "uid" | "createdAt" | "id" | "active">;
+export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
 export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened }) => {
   const [status, setStatus] = useState<number>(user.status);
 
-  const userRef = doc(db, "users", user.uid) as DocumentReference<CurrentUser>;
+  const userRef = doc(db, "users", user.uid) as DocumentReference<User>;
 
   const handleSave = async () => {
     await updateDoc(userRef, { status });
