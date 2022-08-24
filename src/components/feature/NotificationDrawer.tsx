@@ -9,8 +9,6 @@ type Props = {
 };
 
 export const NotificationDrawer: FC<Props> = ({ bellOpened, setBellOpened, data }) => {
-  console.log(data);
-
   return (
     <Drawer
       opened={bellOpened}
