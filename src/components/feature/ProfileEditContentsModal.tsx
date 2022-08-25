@@ -120,6 +120,7 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
       overlayBlur={3}
       overflow="inside"
       radius={10}
+      transitionDuration={250}
     >
       <Tabs defaultValue="アカウント">
         <Tabs.List>

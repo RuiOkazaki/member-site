@@ -29,8 +29,6 @@ export const Member: FC = () => {
 
   if (!currentUser) return null;
   const myFieldMembers = users.filter((user) => user.field === myField && user.uid !== currentUser.uid);
-  console.log(myFieldMembers.length);
-
   return (
     <Layout>
       <Suspense fallback={<AppLoading />}></Suspense>

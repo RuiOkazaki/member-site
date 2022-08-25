@@ -4,30 +4,26 @@ import Link from "next/link";
 import Image from "next/image";
 import { Avatar } from "@mantine/core";
 import { useCurrentUser } from "src/global-states/atoms";
-import { BellIcon, CalendarIcon } from "../ui-libraries/icon";
+import { CalendarIcon } from "../ui-libraries/icon";
 import { LINKS } from "../utils/constants/link";
-import { NotificationModal } from "../feature/NotificationModal";
 import { ProfileEditContentsModal } from "../feature/ProfileEditContentsModal";
 
 export const NavItem: FC = memo(() => {
   const { currentUser, setCurrentUser } = useCurrentUser();
   const [settingOpened, setSettingOpened] = useState(false);
-  const [notificationOpened, setNotificationOpened] = useState(false);
 
   if (!currentUser) return null;
 
   const handleSettingModal = () => {
     setSettingOpened(!settingOpened);
   };
-  const handleNotificationModal = () => {
-    setNotificationOpened(!notificationOpened);
-  };
 
   return (
     <div className="flex items-center gap-5">
-      <button onClick={handleNotificationModal} className="bg-white hover:text-gray-700">
+      {/* //todo: 実装後回し
+        <button onClick={handleNotificationModal} className="bg-white hover:text-gray-700">
         <BellIcon />
-      </button>
+      </button> */}
       <button className="bg-white hover:text-gray-700">
         <CalendarIcon />
       </button>
@@ -50,7 +46,12 @@ export const NavItem: FC = memo(() => {
         opened={settingOpened}
         setOpened={handleSettingModal}
       />
-      <NotificationModal bellOpened={notificationOpened} setBellOpened={handleNotificationModal} />
+      {/*//todo: 実装後回し
+        <NotificationDrawer
+        bellOpened={notificationOpened}
+        setBellOpened={handleNotificationModal}
+        data={notifications}
+      /> */}
     </div>
   );
 });
@@ -67,5 +68,3 @@ export const Header: FC = memo(() => {
   );
 });
 Header.displayName = "Header";
-
-// 通知・ユーザーアイコンをクリックした時に、モーダル表示する
