@@ -54,6 +54,7 @@ export const Admin: FC = () => {
               <tr>
                 <td>{user.displayName}</td>
                 <td>{user.email}</td>
+                {/* //todo:statusの変更をmodalでできるようにする  */}
                 <td>{memberStatus(user.status)}</td>
               </tr>
             </>
