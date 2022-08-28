@@ -1,7 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { Text } from "@mantine/core";
-import { FC, Suspense, useEffect, useState } from "react";
-import { Layout } from "src/components/layout";
+import { FC, useEffect, useState } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { User, Event } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
@@ -9,6 +8,7 @@ import { useCurrentUser } from "src/global-states/atoms";
 import { BoxWithText } from "src/components/ui-libraries/BoxWithText";
 import { FieldInterest } from "src/components/feature/Member/FieldInterest";
 import { ProfileImg } from "src/components/feature/Member/ProfileImg";
+import { useFetchEventList } from "src/hooks/event/useFetchEventList";
 
 type EventCardProps = Omit<Event, "materials" | "participantsUuid">;
 export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, photoUrl, title }) => {
@@ -63,8 +63,7 @@ export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, phot
 };
 
 export const Events: FC = () => {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { fetchEventList, eventList, isLoading } = useFetchEventList();
   const { currentUser } = useCurrentUser();
 
   // currentUserのuidを取得
@@ -73,27 +72,18 @@ export const Events: FC = () => {
 
   // 勉強会資料を取得
   useEffect(() => {
-    try {
-      const getEvents = async () => {
-        const colRef = collection(db, "study-meeting");
-        const events = await getDocs(colRef);
-        const newEvents = events.docs.map((doc) => doc.data() as Event);
-        setEvents(newEvents);
-      };
-      getEvents();
-    } finally {
-      setIsLoading(false);
-    }
-  }, [isLoading]);
+    fetchEventList();
+  }, []);
+
+  if (isLoading || eventList == null) return <AppLoading />;
 
   return (
-    <Layout>
-      <Suspense fallback={<AppLoading />}></Suspense>
+    <>
       <Text component="span" align="center" size="xl" weight={700}>
         イベント
       </Text>
       <div>
-        {events.map((event, index) => {
+        {eventList.map((event, index) => {
           return (
             <EventCard
               key={index}
@@ -106,7 +96,7 @@ export const Events: FC = () => {
           );
         })}
       </div>
-    </Layout>
+    </>
   );
 };
 
