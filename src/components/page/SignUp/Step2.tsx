@@ -256,3 +256,5 @@ export const Step2: FC<Step2Props> = ({ currentUser, setCurrentUser, step, setSt
     </>
   );
 };
+
+// todo: ProfileEditContentsModalのformとこっちのformを共通化する
