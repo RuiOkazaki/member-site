@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "src/components/utils/libs/firebase";
-import { Event } from "./event.entity";
+import { Event } from ".";
 
 export const eventRepository = {
   async find(): Promise<Event[]> {

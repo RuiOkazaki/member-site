@@ -2,13 +2,14 @@ import { collection, getDocs } from "firebase/firestore";
 import { Text } from "@mantine/core";
 import { FC, useEffect, useState } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
-import { User, Event } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
 import { useCurrentUser } from "src/global-states/atoms";
 import { BoxWithText } from "src/components/ui-libraries/BoxWithText";
 import { FieldInterest } from "src/components/feature/Member/FieldInterest";
 import { ProfileImg } from "src/components/feature/Member/ProfileImg";
 import { useFetchEventList } from "src/hooks/event/useFetchEventList";
+import { User } from "src/modules/user";
+import { Event } from "src/modules/event";
 
 type EventCardProps = Omit<Event, "materials" | "participantsUuid">;
 export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, photoUrl, title }) => {

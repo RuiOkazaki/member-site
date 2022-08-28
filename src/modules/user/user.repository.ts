@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "src/components/utils/libs/firebase";
-import { User } from "./user.entity";
+import { User } from ".";
 
 export const userRepository = {
   async find(): Promise<User[]> {

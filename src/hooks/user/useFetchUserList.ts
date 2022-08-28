@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { User } from "src/modules/user/user.entity";
-import { userRepository } from "src/modules/user/user.repository";
+import { User, userRepository } from "src/modules/user";
 
 export const useFetchUserList = () => {
   const [userList, setUserList] = useState<User[] | null>(null);

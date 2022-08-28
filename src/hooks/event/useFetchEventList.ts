@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Event } from "src/modules/event/event.entity";
-import { eventRepository } from "src/modules/event/event.repository";
+import { eventRepository, Event } from "src/modules/event";
 
 export const useFetchEventList = () => {
   const [eventList, setEventList] = useState<Event[] | null>(null);
