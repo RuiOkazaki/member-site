@@ -7,4 +7,6 @@ export const LINKS = {
   MEMBER: "/member",
   SIGNUP: "/signup",
   LOGIN: "/login",
+  ADMIN: "/admin",
+  ADMINID: "/admin/[id]",
 };

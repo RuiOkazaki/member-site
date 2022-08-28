@@ -8,8 +8,8 @@ import { AuthProvider } from "src/components/ui-libraries/AuthProvider";
 import { AuthModal } from "src/components/feature/AuthModal";
 import { TECH_UNI } from "src/components/utils/constants/tokens";
 import { LINKS } from "src/components/utils/constants/link";
-import { useCurrentUser } from "src/global-states/atoms";
 import { Layout } from "src/components/layout";
+import { useCurrentUser } from "src/global-states/atoms";
 
 const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   return (
@@ -32,7 +32,7 @@ const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
 
   if (!password) return <AuthModal opened={opened} setOpened={setOpened} />;
   if (router.pathname === LINKS.LOGIN) return <Component {...pageProps} />;
-  // if (currentUser?.status === 0 && router.pathname !== LINKS.SIGNUP && router.pathname !== LINKS.LOGIN) {
+  // if (currentUser?.status !== 2 && router.pathname !== LINKS.SIGNUP && router.pathname !== LINKS.LOGIN) {
   //   return <h1>承認待ちです。</h1>;
   // }
 
