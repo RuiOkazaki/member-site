@@ -61,6 +61,7 @@ export const Header: FC = memo(() => {
   return (
     <header className="sticky top-0 z-10 flex h-12 items-center justify-between border-b py-3 px-4">
       <Link href={LINKS.HOME}>
+        {/* //todo:Tech.Uniアイコンと、Homeのアイコンの大きさ、位置を揃える  */}
         <Image src={"/favicons/favicon-32x32.png"} width={32} height={32} alt="Tech.Uniアイコン" />
       </Link>
       <NavItem />
