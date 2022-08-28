@@ -6,7 +6,6 @@ import { MemberProfileIcon } from "src/components/feature/Member/MemberProfileIc
 import { db } from "src/components/utils/libs/firebase";
 import { User } from "src/components/utils/libs/firebase/index";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
-import { Layout } from "src/components/layout";
 import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
 
 export const AdminDetail: FC = () => {
