@@ -17,7 +17,7 @@ export const Admin: FC = () => {
         setUsers(users.docs.map((doc) => doc.data() as User));
       };
       getUsers();
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
       setUsers([]);
     } finally {
