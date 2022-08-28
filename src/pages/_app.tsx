@@ -36,7 +36,7 @@ const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
   //   return <h1>承認待ちです。</h1>;
   // }
 
-  const isNotAdminUser = currentUser?.status !== 2;
+  const isNotAdminUser = currentUser?.position !== 2;
   const isAdminPage = router.pathname === LINKS.ADMIN;
   const isAdminIdPage = router.pathname === LINKS.ADMINID;
   if (isNotAdminUser && (isAdminPage || isAdminIdPage)) {
