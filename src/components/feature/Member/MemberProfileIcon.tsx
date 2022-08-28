@@ -8,9 +8,9 @@ type ProfileImgProps = {
 
 export const MemberProfileIcon: FC<ProfileImgProps> = ({ displayName, photoURL }) => {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <img src={photoURL} alt={`${displayName}の画像`} className="w-12 rounded-full" />
-      <p className="pt-1 text-xs">{displayName}</p>
+      <p className="w-20 truncate pt-1 text-center text-xs">{displayName}</p>
     </div>
   );
 };
