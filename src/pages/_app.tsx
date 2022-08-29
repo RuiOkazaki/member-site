@@ -38,7 +38,9 @@ const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
 
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </AuthProvider>
   );
 };
