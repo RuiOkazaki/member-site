@@ -9,7 +9,7 @@ import { User } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
 import { AppButton } from "src/components/ui-libraries/AppButton";
 
-type Step2Props = {
+type Props = {
   currentUser: User;
   setCurrentUser: (currentUser: User) => void;
   step: number;
@@ -18,7 +18,7 @@ type Step2Props = {
 
 export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
-export const Step2: FC<Step2Props> = ({ currentUser, setCurrentUser, step, setStep }) => {
+export const Step2: FC<Props> = ({ currentUser, setCurrentUser, step, setStep }) => {
   const [formData, setFormData] = useState<FormData>({
     bio: currentUser.bio,
     displayName: currentUser.displayName,
@@ -85,6 +85,16 @@ export const Step2: FC<Step2Props> = ({ currentUser, setCurrentUser, step, setSt
     if (percent !== 100) return <p className="rounded-full bg-slate-100 px-2 font-bold text-blue-300">{percent}%</p>;
     return file && <Avatar src={window.URL.createObjectURL(file) ?? currentUser.photoURL} radius="xl" size={40} />;
   };
+
+  // requiredのついている項目が入力されていない場合はdisabledにする
+  const isDisabled =
+    !formData.photoURL ||
+    !formData.displayName ||
+    !formData.email ||
+    !formData.github ||
+    !formData.field ||
+    !formData.fieldDetails ||
+    !formData.bio;
 
   if (!currentUser) {
     return null;
@@ -237,16 +247,7 @@ export const Step2: FC<Step2Props> = ({ currentUser, setCurrentUser, step, setSt
           type="button"
           color="blue"
           radius="sm"
-          // requiredのついている項目が入力されていない場合はdisabledにする
-          disabled={
-            !formData.photoURL ||
-            !formData.displayName ||
-            !formData.email ||
-            !formData.github ||
-            !formData.field ||
-            !formData.fieldDetails ||
-            !formData.bio
-          }
+          disabled={isDisabled}
           className=""
           onClick={handleSaveAndNext}
         >

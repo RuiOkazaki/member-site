@@ -1,13 +1,14 @@
 import { FC } from "react";
 import { Text } from "@mantine/core";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { AppButton } from "src/components/ui-libraries/AppButton";
 
-type Step4Props = {
+type Props = {
   step: number;
   setStep: (step: number) => void;
 };
-export const Step4: FC<Step4Props> = ({ step, setStep }) => {
+export const Step4: FC<Props> = ({ step, setStep }) => {
+  const router = useRouter();
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -18,14 +19,9 @@ export const Step4: FC<Step4Props> = ({ step, setStep }) => {
         <br />
         <br />
         <br />
-        {/* ルートへ遷移するリンクを配置する */}
-        <Link href="/">
-          <a>
-            <AppButton color="blue" radius="sm" size="sm" className="w-full" type="button">
-              ルートへ
-            </AppButton>
-          </a>
-        </Link>
+        <AppButton color="blue" radius="sm" size="sm" className="" type="button" onClick={() => router.push("/")}>
+          ルートへ
+        </AppButton>
         <br />
         <Text size="sm" color="red" className="text-center">
           承認されるまで、ルートに遷移することはできません🙏

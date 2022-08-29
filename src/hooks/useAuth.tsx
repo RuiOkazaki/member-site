@@ -66,7 +66,6 @@ export const useAuth = (): ReturnType => {
 
     setDoc(docRef, data, { merge: true })
       .then(() => {
-        // todo: これあってる？か調査できてない
         router.push(LINKS.HOME);
       })
       .catch((e) => {

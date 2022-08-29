@@ -2,11 +2,11 @@ import { FC } from "react";
 import { Text } from "@mantine/core";
 import { AppButton } from "src/components/ui-libraries/AppButton";
 
-type Step3Props = {
+type Props = {
   step: number;
   setStep: (step: number) => void;
 };
-export const Step3: FC<Step3Props> = ({ step, setStep }) => {
+export const Step3: FC<Props> = ({ step, setStep }) => {
   return (
     <>
       <Text weight="bold" className="text-center">
