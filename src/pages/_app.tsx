@@ -8,7 +8,6 @@ import { AuthProvider } from "src/components/ui-libraries/AuthProvider";
 import { AuthModal } from "src/components/feature/AuthModal";
 import { TECH_UNI } from "src/components/utils/constants/tokens";
 import { LINKS } from "src/components/utils/constants/link";
-import { useCurrentUser } from "src/global-states/atoms";
 import { Layout } from "src/components/layout";
 
 const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
@@ -23,7 +22,6 @@ const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
 const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
   const [opened, setOpened] = useState(false);
   const [password, setPassword] = useState<string | null>(null);
-  const { currentUser } = useCurrentUser();
 
   useEffect(() => {
     setPassword(localStorage.getItem(TECH_UNI));
@@ -32,14 +30,9 @@ const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
 
   if (!password) return <AuthModal opened={opened} setOpened={setOpened} />;
 
-  const isShowOnlyComponent = router.pathname === LINKS.LOGIN || router.pathname === LINKS.SIGNUP;
-  if (isShowOnlyComponent) return <Component {...pageProps} />;
-
-  const isRedirectToSignupPage =
-    currentUser?.status === 0 && router.pathname !== LINKS.SIGNUP && router.pathname !== LINKS.LOGIN;
-  if (isRedirectToSignupPage) {
-    router.push(LINKS.SIGNUP);
-  }
+  const isLoginPage = router.pathname === LINKS.LOGIN;
+  const isSignUpPage = router.pathname === LINKS.SIGNUP;
+  if (isLoginPage) return <Component {...pageProps} />;
 
   return (
     <AuthProvider>
