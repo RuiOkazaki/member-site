@@ -14,13 +14,11 @@ export const Step3: FC<Props> = ({ step, setStep }) => {
       </Text>
 
       <div className="flex h-full  flex-col items-center justify-center pl-5">
-        <Text>本当にあなたがTech.Uniメンバーかどうかを、管理者が確認しています。</Text>
+        <Text>毎日22時に、管理者がその日に承認の要求したユーザーを確認する作業を行います</Text>
         <Text weight="bold">🙇承認されるまで、しばらくお待ちください🙇</Text>
         <br />
         <Text size="sm" color="red">
-          ※ 承認に最大1日かかる場合があります。
-          <br />
-          もし、すぐに承認が欲しい場合、slackで <span className="text-blue-400">@Shin Yamamoto @Yoshiki Naruo</span>
+          ※ もしすぐに承認が欲しい場合、slackで <span className="text-blue-400">@Shin Yamamoto @Yoshiki Naruo</span>
           にメンションを送ってください。
         </Text>
         <br />

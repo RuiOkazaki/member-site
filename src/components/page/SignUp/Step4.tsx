@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Text } from "@mantine/core";
 import { useRouter } from "next/router";
 import { AppButton } from "src/components/ui-libraries/AppButton";
+import { useCurrentUser } from "src/global-states/atoms";
 
 type Props = {
   step: number;
@@ -9,6 +10,9 @@ type Props = {
 };
 export const Step4: FC<Props> = ({ step, setStep }) => {
   const router = useRouter();
+  const { currentUser } = useCurrentUser();
+  const isDisabled = currentUser?.status === 0;
+
   return (
     <>
       <div className="flex flex-col items-center justify-center">
@@ -19,12 +23,20 @@ export const Step4: FC<Props> = ({ step, setStep }) => {
         <br />
         <br />
         <br />
-        <AppButton color="blue" radius="sm" size="sm" className="" type="button" onClick={() => router.push("/")}>
+        <AppButton
+          color="blue"
+          radius="sm"
+          size="sm"
+          className=""
+          type="button"
+          onClick={() => router.push("/")}
+          disabled={isDisabled}
+        >
           ルートへ
         </AppButton>
         <br />
         <Text size="sm" color="red" className="text-center">
-          承認されるまで、ルートに遷移することはできません🙏
+          承認されると、ボタンが押せるようになります🫡
         </Text>
       </div>
 
@@ -36,5 +48,3 @@ export const Step4: FC<Props> = ({ step, setStep }) => {
     </>
   );
 };
-
-// todo: slackに飛ばすボタンを追加する

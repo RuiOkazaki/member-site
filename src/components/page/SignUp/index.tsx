@@ -1,5 +1,7 @@
-import { FC, useState } from "react";
+import { FC, useState, Suspense } from "react";
+import { Layout } from "src/components/layout";
 import { useCurrentUser } from "src/global-states/atoms";
+import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
@@ -26,15 +28,17 @@ export const SignUp: FC = () => {
   };
 
   return (
-    <>
-      <div className="flex h-screen flex-col items-center justify-center">
-        <div className="flex w-4/5 flex-col items-center rounded  bg-gray-50 p-4 lg:w-2/5">
-          <StepCircle step={step} />
+    <Layout>
+      <Suspense fallback={<AppLoading />}>
+        <div className="flex h-screen flex-col items-center justify-center">
+          <div className="flex w-4/5 flex-col items-center rounded  bg-gray-50 p-4 lg:w-2/5">
+            <StepCircle step={step} />
 
-          {/* h-[30rem]・flex-col・AppButtonのmt-autoでボタンを下に配置している */}
-          <div className="mt-4 flex h-[32rem] flex-col">{switchDisplayStep(step)}</div>
+            {/* h-[30rem]・flex-col・AppButtonのmt-autoでボタンを下に配置している */}
+            <div className="mt-4 flex h-[32rem] flex-col">{switchDisplayStep(step)}</div>
+          </div>
         </div>
-      </div>
-    </>
+      </Suspense>
+    </Layout>
   );
 };
