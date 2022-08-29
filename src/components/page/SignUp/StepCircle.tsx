@@ -5,7 +5,6 @@ type StepCircleProps = {
   step: number;
 };
 export const StepCircle: FC<StepCircleProps> = ({ step }) => {
-  console.log("step", step);
   const stepArray = [1, 2, 3, 4];
   return (
     <div className="flex items-center gap-1">
