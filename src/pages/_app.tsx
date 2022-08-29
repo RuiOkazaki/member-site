@@ -8,7 +8,6 @@ import { AuthProvider } from "src/components/ui-libraries/AuthProvider";
 import { AuthModal } from "src/components/feature/AuthModal";
 import { TECH_UNI } from "src/components/utils/constants/tokens";
 import { LINKS } from "src/components/utils/constants/link";
-import { Layout } from "src/components/layout";
 import { useCurrentUser } from "src/global-states/atoms";
 
 const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
@@ -47,9 +46,7 @@ const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
 
   return (
     <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </AuthProvider>
   );
 };
