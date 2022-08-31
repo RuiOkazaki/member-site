@@ -20,6 +20,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   useEffect(() => {
     const uid: string | null = localStorage.getItem(UID);
     if (!uid) {
+      // uidがない場合は、ログインしていないと判断して、ログイン画面にリダイレクトする
       router.push(LINKS.LOGIN);
       return;
     }
@@ -39,8 +40,18 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const isSignUpPage = router.pathname === LINKS.SIGNUP;
+  const isApproved = currentUser?.status === 1;
+  if (isApproved && isSignUpPage) {
+    router.push(LINKS.HOME);
+  }
+  if (!isApproved && !isSignUpPage) {
+    router.push(LINKS.SIGNUP);
+  }
+
   if (isLoading) return <AppLoading />;
   if (!currentUser) {
+    // currentUserがない場合は、ログインしていないと判断して、ログイン画面にリダイレクトする
     router.push(LINKS.LOGIN);
     return null;
   }
