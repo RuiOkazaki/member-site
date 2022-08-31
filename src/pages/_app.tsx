@@ -26,12 +26,13 @@ const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
   useEffect(() => {
     setPassword(localStorage.getItem(TECH_UNI));
     setOpened(true);
-  }, [opened]);
+  }, []);
 
   if (!password) return <AuthModal opened={opened} setOpened={setOpened} />;
-
-  const isLoginPage = router.pathname === LINKS.LOGIN;
-  if (isLoginPage) return <Component {...pageProps} />;
+  if (router.pathname === LINKS.LOGIN) return <Component {...pageProps} />;
+  // if (currentUser?.status !== 2 && router.pathname !== LINKS.SIGNUP && router.pathname !== LINKS.LOGIN) {
+  //   return <h1>承認待ちです。</h1>;
+  // }
 
   return (
     <AuthProvider>

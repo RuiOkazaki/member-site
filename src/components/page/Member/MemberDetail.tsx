@@ -1,37 +1,24 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { Layout } from "src/components/layout";
-import { db } from "src/components/utils/libs/firebase";
-import { User } from "src/components/utils/libs/firebase/index";
+import { useEffect } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { MemberProfileIcon } from "src/components/feature/Member/MemberProfileIcon";
 import { InterestGroup, MemberSNSLink } from "src/components/feature/Member/MemberCard";
+import { useFetchUser } from "src/hooks/user/useFetchUser";
 
 export const MemberDetail = () => {
-  const [user, setUser] = useState<User>();
-  const [isLoading, setIsLoading] = useState(true);
+  const { fetchUser, user, isLoading } = useFetchUser();
   const router = useRouter();
 
   useEffect(() => {
     if (router.isReady) {
-      try {
-        const getUser = async () => {
-          const docRef = doc(db, `users/${router.query.id}`);
-          const user = (await getDoc(docRef)).data();
-          setUser(user as User);
-        };
-        getUser();
-      } finally {
-        setIsLoading(false);
-      }
+      fetchUser(router.query.id as string);
     }
   }, [router.query.id]);
 
   if (isLoading || user == null) return <AppLoading />;
 
   return (
-    <Layout>
+    <>
       <MemberProfileIcon displayName={user.displayName} photoURL={user.photoURL} />
       <InterestGroup field={user?.field} fieldDetails={user?.fieldDetails} />
       <MemberSNSLink github={user?.github} twitter={user?.twitter} instagram={user?.instagram} />
@@ -55,6 +42,6 @@ export const MemberDetail = () => {
           <p className="w-full truncate">{user.bio}</p>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };

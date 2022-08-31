@@ -1,29 +1,14 @@
 import { Table } from "@mantine/core";
-import { collection, getDocs } from "firebase/firestore";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
-import { db } from "src/components/utils/libs/firebase";
-import { User } from "src/components/utils/libs/firebase/index";
+import { useFetchUserList } from "src/hooks/user/useFetchUserList";
 
 export const Admin: FC = () => {
-  const [users, setUsers] = useState<User[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { fetchUser, userList, isLoading } = useFetchUserList();
 
   useEffect(() => {
-    try {
-      const getUsers = async () => {
-        const usersRef = collection(db, "users");
-        const users = await getDocs(usersRef);
-        setUsers(users.docs.map((doc) => doc.data() as User));
-      };
-      getUsers();
-    } catch (error: any) {
-      console.log(error);
-      setUsers([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [isLoading]);
+    fetchUser();
+  }, []);
 
   const memberStatus = useCallback((status: number) => {
     switch (status) {
@@ -36,7 +21,7 @@ export const Admin: FC = () => {
     }
   }, []);
 
-  if (users == null || isLoading) return <AppLoading />;
+  if (userList == null || isLoading) return <AppLoading />;
 
   return (
     <Table>
@@ -48,7 +33,7 @@ export const Admin: FC = () => {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => {
+        {userList.map((user) => {
           return (
             <>
               <tr>

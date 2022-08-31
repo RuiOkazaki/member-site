@@ -5,9 +5,9 @@ import { facultyData, gradeData } from "src/components/utils/constants/universit
 import { fieldDetailsData, interestData } from "src/components/utils/constants/field";
 import { TwitterIcon, GitHubIcon, InstagramIcon } from "src/components/ui-libraries/icon";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
-import { User } from "src/components/utils/libs/firebase/index";
 import { db } from "src/components/utils/libs/firebase";
 import { AppButton } from "src/components/ui-libraries/AppButton";
+import { User } from "src/modules/user";
 
 type Props = {
   currentUser: User;
