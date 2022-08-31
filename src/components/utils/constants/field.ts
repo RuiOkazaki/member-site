@@ -1,6 +1,6 @@
 export const interestData = [
   { value: "フロントエンド", label: "フロントエンド" },
-  { value: "ios", label: "ios" },
+  { value: "モバイル", label: "モバイル" },
   { value: "バックエンド", label: "バックエンド" },
   { value: "サーバーサイド", label: "サーバーサイド" },
   { value: "機械学習", label: "機械学習" },
@@ -14,6 +14,9 @@ export const fieldDetailsData = [
   { value: "Angular", label: "Angular", color: "red" },
   { value: "TypeScript", label: "TypeScript", color: "orange" },
   { value: "Next.js", label: "Next.js", color: "gray" },
+  { value: "Flutter", label: "Flutter", color: "green" },
+  { value: "Kotlin", label: "Kotlin", color: "red" },
+  { value: "Swift", label: "Swift", color: "blue" },
   { value: "Node.js", label: "Node.js", color: "green" },
   { value: "Express", label: "Express", color: "silver" },
   { value: "MySQL", label: "MySQL", color: "orange" },

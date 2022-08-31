@@ -5,16 +5,17 @@ type Props = {
   type: "button" | "reset" | "submit";
   variant?: "filled" | "outline" | "light" | "gradient" | "white" | "default" | "subtle";
   color: "gray" | "red" | "blue" | "white" | "default";
-  radius: "xs" | "md" | "lg" | "xl";
-  size: "xs" | "md" | "lg" | "xl";
+  radius: "xs" | "sm" | "md" | "lg" | "xl";
+  size: "xs" | "sm" | "md" | "lg" | "xl";
   className?: string;
   compact?: boolean;
   children: ReactNode;
+  disabled?: boolean;
   onClick?: DOMAttributes<HTMLButtonElement>["onClick"];
 };
 
 export const AppButton: FC<Props> = memo(
-  ({ type, variant, color, radius, size, compact, className, children, onClick }) => {
+  ({ type, variant, color, radius, size, compact, disabled, className, children, onClick }) => {
     return (
       <>
         <Button
@@ -24,6 +25,7 @@ export const AppButton: FC<Props> = memo(
           radius={radius}
           size={size}
           compact={compact}
+          disabled={disabled}
           className={className}
           onClick={onClick}
         >

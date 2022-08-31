@@ -20,6 +20,7 @@ import {
 } from "../ui-libraries/icon";
 import { AppButton } from "../ui-libraries/AppButton";
 import { LINKS } from "../utils/constants/link";
+import { UID } from "../utils/constants/tokens";
 
 type Props = {
   currentUser: User;
@@ -101,6 +102,7 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
+        localStorage.removeItem(UID);
         toast.success("成功しました");
         router.push(LINKS.LOGIN);
       })
