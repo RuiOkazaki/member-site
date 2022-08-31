@@ -45,5 +45,15 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     return null;
   }
 
+  const isNotAdminUser = currentUser?.position <= 1;
+  const isAdminPage = router.pathname === LINKS.ADMIN;
+  const isAdminIdPage = router.pathname === LINKS.ADMINID;
+  if (isNotAdminUser && (isAdminPage || isAdminIdPage)) {
+    router.push(LINKS.HOME);
+    // TODO: ここをtoast表示させるようにしたいが今の状態だとレンダリン回数的に4つ表示させるようになってしまう。
+    console.log("管理者しか見れません");
+    return null;
+  }
+
   return <div>{children}</div>;
 };
