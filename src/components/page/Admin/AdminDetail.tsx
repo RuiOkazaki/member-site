@@ -1,16 +1,13 @@
-import { doc, getDoc } from "firebase/firestore";
 import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { InterestGroup, MemberSNSLink } from "src/components/feature/Member/MemberCard";
 import { MemberProfileIcon } from "src/components/feature/Member/MemberProfileIcon";
-import { db } from "src/components/utils/libs/firebase";
-import { User } from "src/components/utils/libs/firebase/index";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
+import { useFetchUser } from "src/hooks/user/useFetchUser";
 
 export const AdminDetail: FC = () => {
-  const [user, setUser] = useState<User>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { fetchUser, user, isLoading } = useFetchUser();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
   const handleOpen = () => {
@@ -19,16 +16,7 @@ export const AdminDetail: FC = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      try {
-        const getUser = async () => {
-          const docRef = doc(db, `users/${router.query.id}`);
-          const user = await getDoc(docRef);
-          setUser(user.data() as User);
-        };
-        getUser();
-      } finally {
-        setIsLoading(false);
-      }
+      fetchUser(router.query.id as string);
     }
   }, [router.query.id]);
 

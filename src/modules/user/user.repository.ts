@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "src/components/utils/libs/firebase";
-import { User } from "./user.entity";
+import { User } from ".";
 
 export const userRepository = {
   async find(): Promise<User[]> {
@@ -15,5 +15,12 @@ export const userRepository = {
     const res = await getDoc(userRef);
     const user = res.data() as User;
     return user;
+  },
+
+  async findEventOrganizer(organizerUuid: string): Promise<User> {
+    const colRef = collection(db, "users");
+    const users = await getDocs(colRef);
+    const organizer = users.docs.map((doc) => doc.data()).find((user) => user.uid === organizerUuid) as User;
+    return organizer;
   },
 };

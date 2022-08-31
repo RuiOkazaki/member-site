@@ -1,5 +1,5 @@
 import { atom, useRecoilState } from "recoil";
-import { User } from "src/components/utils/libs/firebase/users";
+import { User } from "src/modules/user";
 
 export const currentUserState = atom<User | null>({
   key: "currentUserState",
