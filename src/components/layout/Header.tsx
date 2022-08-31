@@ -59,9 +59,9 @@ NavItem.displayName = "NavItem";
 
 export const Header: FC = memo(() => {
   return (
-    <header className="sticky top-0 z-10 flex h-12 items-center justify-between border-b py-3 px-4">
+    <header className="sticky top-0 z-10 flex h-12 items-center justify-between border-b  px-2">
       <Link href={LINKS.HOME}>
-        <Image src={"/favicons/favicon-32x32.png"} width={32} height={32} alt="Tech.Uniアイコン" />
+        <Image src={"/favicons/favicon-32x32.png"} width={22.5} height={22.5} alt="Tech.Uniアイコン" />
       </Link>
       <NavItem />
     </header>
