@@ -9,8 +9,6 @@ export const StepCircle: FC<StepCircleProps> = ({ step }) => {
   return (
     <div className="flex items-center gap-1">
       {stepArray.map((item, index) => {
-        console.log("item", item);
-
         return (
           <div
             key={index}

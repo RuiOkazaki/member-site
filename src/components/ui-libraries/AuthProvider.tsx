@@ -40,28 +40,35 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isSignUpPage = router.pathname === LINKS.SIGNUP;
-  const isApproved = currentUser?.status === 1;
-  if (isApproved && isSignUpPage) {
-    router.push(LINKS.HOME);
-  }
-  if (!isApproved && !isSignUpPage) {
-    router.push(LINKS.SIGNUP);
-  }
-
   if (isLoading) return <AppLoading />;
+
+  // currentUserがない場合は、ログインしていないと判断して、loginにリダイレクト
   if (!currentUser) {
-    // currentUserがない場合は、ログインしていないと判断して、ログイン画面にリダイレクトする
     router.push(LINKS.LOGIN);
     return null;
   }
 
-  const isNotAdminUser = currentUser?.position <= 1;
+  const isSignUpPage = router.pathname === LINKS.SIGNUP;
   const isAdminPage = router.pathname === LINKS.ADMIN;
   const isAdminIdPage = router.pathname === LINKS.ADMINID;
+
+  const isNotAdminUser = currentUser?.position <= 1;
+  const isApproved = currentUser?.status === 1;
+
+  // 承認されていて、signUpページにいる場合は、ホーム画面にリダイレクト
+  if (isApproved && isSignUpPage) {
+    router.push(LINKS.HOME);
+  }
+
+  // 承認されてなくて、signUpページにいない場合は、signUpページにリダイレクト
+  if (!isApproved && !isSignUpPage) {
+    router.push(LINKS.SIGNUP);
+  }
+
+  // adminではないユーザーが、adminページ関連にいる場合は、ホーム画面にリダイレクト
   if (isNotAdminUser && (isAdminPage || isAdminIdPage)) {
     router.push(LINKS.HOME);
-    // TODO: ここをtoast表示させるようにしたいが今の状態だとレンダリン回数的に4つ表示させるようになってしまう。
+    // TODO: toast表示したいがレンダリン回数的に4つ表示してしまう
     console.log("管理者しか見れません");
     return null;
   }
