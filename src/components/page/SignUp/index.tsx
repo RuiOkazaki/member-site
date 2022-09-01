@@ -1,5 +1,4 @@
 import { FC, useState, Suspense } from "react";
-import { Layout } from "src/components/layout";
 import { useCurrentUser } from "src/global-states/atoms";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { Step1 } from "./Step1";
@@ -28,10 +27,10 @@ export const SignUp: FC = () => {
   };
 
   return (
-    <Layout>
+    <>
       <Suspense fallback={<AppLoading />}>
         <div className="flex h-screen flex-col items-center justify-center">
-          <div className="flex w-4/5 flex-col items-center rounded  bg-gray-50 p-4 lg:w-2/5">
+          <div className="flex w-3/5 flex-col items-center rounded  bg-gray-50 p-4">
             <StepCircle step={step} />
 
             {/* h-[30rem]・flex-col・AppButtonのmt-autoでボタンを下に配置している */}
@@ -39,6 +38,6 @@ export const SignUp: FC = () => {
           </div>
         </div>
       </Suspense>
-    </Layout>
+    </>
   );
 };
