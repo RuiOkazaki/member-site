@@ -1,66 +1,101 @@
 import { Table } from "@mantine/core";
-import { collection, getDocs } from "firebase/firestore";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
+import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
-import { db } from "src/components/utils/libs/firebase";
 import { User } from "src/components/utils/libs/firebase/index";
+import { useFetchMembers } from "src/hooks/user/useFetchUserList";
 
-export const Admin: FC = () => {
-  const [users, setUsers] = useState<User[] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+const TABLE_HEADER = {
+  name: "Name",
+  email: "Email",
+  status: "Status",
+};
 
-  useEffect(() => {
-    try {
-      const getUsers = async () => {
-        const usersRef = collection(db, "users");
-        const users = await getDocs(usersRef);
-        setUsers(users.docs.map((doc) => doc.data() as User));
-      };
-      getUsers();
-    } catch (error: any) {
-      console.log(error);
-      setUsers([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [isLoading]);
+const memberStatus = (status: number) => {
+  switch (status) {
+    case 1:
+      return "✅ 登録済み";
+    case 2:
+      return "❌ 退会";
+    default:
+      return "📝 未登録";
+  }
+};
 
-  const memberStatus = useCallback((status: number) => {
-    switch (status) {
-      case 1:
-        return "✅ 登録済み";
-      case 2:
-        return "❌ 退会";
-      default:
-        return "📝 未登録";
-    }
-  }, []);
+type StatusProps = {
+  status: number;
+  user: User;
+};
+const Status: FC<StatusProps> = ({ status, user }) => {
+  const [statusModalOpened, setStatusModalOpened] = useState<boolean>(false);
+  const handleOpen = () => {
+    setStatusModalOpened(!statusModalOpened);
+  };
 
-  if (users == null || isLoading) return <AppLoading />;
+  return (
+    <>
+      <div onClick={handleOpen}>{memberStatus(status)}</div>
+      <MemberStatusEditContentsModal user={user} opened={statusModalOpened} setOpened={handleOpen} />
+    </>
+  );
+};
 
+type Props = {
+  header: typeof TABLE_HEADER;
+  body: {
+    name: string;
+    email: string;
+    status: ReactNode;
+  }[];
+};
+
+const TableComponent: FC<Props> = ({ header, body }) => {
   return (
     <Table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Status</th>
+          {Object.values(header).map((value) => {
+            return <th key={value}>{value}</th>;
+          })}
         </tr>
       </thead>
+
       <tbody>
-        {users.map((user) => {
+        {body.map((obj, i) => {
           return (
-            <>
-              <tr>
-                <td>{user.displayName}</td>
-                <td>{user.email}</td>
-                {/* //todo:statusの変更をmodalでできるようにする  */}
-                <td>{memberStatus(user.status)}</td>
-              </tr>
-            </>
+            <tr key={i}>
+              {Object.values(obj).map((value, i) => {
+                return <td key={i}>{value}</td>;
+              })}
+            </tr>
           );
         })}
       </tbody>
     </Table>
+  );
+};
+
+export const Admin: FC = () => {
+  const { fetchUser, userList, isLoading } = useFetchMembers();
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const memberArray = userList?.map((user) => {
+    return {
+      name: user.displayName,
+      email: user.email,
+      status: <Status status={user.status} user={user} />,
+    };
+  });
+  if (memberArray === undefined) return <AppLoading />;
+
+  if (isLoading || userList == null) return <AppLoading />;
+
+  return (
+    <>
+      <TableComponent header={TABLE_HEADER} body={memberArray} />
+    </>
   );
 };

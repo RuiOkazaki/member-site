@@ -7,7 +7,8 @@ import { toast } from "react-hot-toast";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { auth, db } from "../utils/libs/firebase";
 import { facultyData, gradeData } from "../utils/constants/university";
-import { fieldDetailsData, interestData } from "../utils/constants/field";
+import { fieldDetailsData } from "../utils/constants/field";
+import { interestData } from "../utils/constants/interest";
 import {
   GitHubIcon,
   InfoIcon,

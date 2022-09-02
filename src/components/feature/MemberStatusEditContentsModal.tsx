@@ -3,7 +3,7 @@ import { Modal as MantineModal, Select } from "@mantine/core";
 import { doc, DocumentReference, updateDoc } from "firebase/firestore";
 import { User } from "src/components/utils/libs/firebase/index";
 import { db } from "../utils/libs/firebase";
-import { statusData } from "../utils/constants/field";
+import { statusData } from "../utils/constants/status";
 import { AppButton } from "../ui-libraries/AppButton";
 
 type Props = {
@@ -16,23 +16,15 @@ export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
 export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened }) => {
   const [status, setStatus] = useState<number>(user.status);
+  console.log("status", status);
 
   const userRef = doc(db, "users", user.uid) as DocumentReference<User>;
 
   const handleSave = async () => {
     await updateDoc(userRef, { status });
+    setStatus(status);
+    console.log("あああ", status);
     setOpened();
-  };
-
-  const statusBody = () => {
-    switch (user.status) {
-      case 1:
-        return { status: 1, message: "登録済み" };
-      case 2:
-        return { status: 2, message: "退会済み" };
-      default:
-        return { status: 0, message: "未登録" };
-    }
   };
 
   return (
@@ -52,9 +44,10 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
         placeholder="選択してください"
         data={statusData}
         className="mt-4"
-        value={String(statusBody().status)}
+        value={String(status)}
         dropdownComponent="div"
         onChange={(e) => {
+          console.log(e);
           setStatus(Number(e));
         }}
       />
@@ -67,5 +60,3 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
     </MantineModal>
   );
 };
-
-// todo: 最も興味のある分野を選んだら、fieldDetailsが連動するようにする
