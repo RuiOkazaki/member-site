@@ -6,9 +6,7 @@ import { signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { auth, db } from "../utils/libs/firebase";
-import { facultyData, gradeData } from "../utils/constants/university";
-import { fieldDetailsData } from "../utils/constants/field";
-import { interestData } from "../utils/constants/interest";
+import { facultyData, gradeData, fieldDetailsData, interestData, LINKS } from "../utils/constants/index";
 import {
   GitHubIcon,
   InfoIcon,
@@ -19,7 +17,6 @@ import {
   DeleteIcon,
 } from "../ui-libraries/icon";
 import { AppButton } from "../ui-libraries/AppButton";
-import { LINKS } from "../utils/constants/link";
 import { User } from "../utils/libs/firebase/index";
 
 type Props = {

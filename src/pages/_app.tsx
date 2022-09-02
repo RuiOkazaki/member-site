@@ -6,8 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { FC, useEffect, useState } from "react";
 import { AuthProvider } from "src/components/ui-libraries/AuthProvider";
 import { AuthModal } from "src/components/feature/AuthModal";
-import { TECH_UNI } from "src/components/utils/constants/tokens";
-import { LINKS } from "src/components/utils/constants/link";
+import { TECH_UNI, LINKS } from "src/components/utils/constants/index";
 import { Layout } from "src/components/layout";
 
 const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {

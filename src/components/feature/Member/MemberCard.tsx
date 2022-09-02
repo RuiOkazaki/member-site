@@ -3,7 +3,7 @@ import { FC, memo } from "react";
 import Link from "next/link";
 import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
 import { User } from "src/components/utils/libs/firebase/index";
-import { fieldDetailsData } from "src/components/utils/constants/field";
+import { fieldDetailsData } from "src/components/utils/constants/index";
 import { FieldInterest } from "./FieldInterest";
 import { MemberProfileIcon } from "./MemberProfileIcon";
 

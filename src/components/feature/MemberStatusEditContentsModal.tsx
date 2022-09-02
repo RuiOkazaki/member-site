@@ -3,7 +3,7 @@ import { Modal as MantineModal, Select } from "@mantine/core";
 import { doc, DocumentReference, updateDoc } from "firebase/firestore";
 import { User } from "src/components/utils/libs/firebase/index";
 import { db } from "../utils/libs/firebase";
-import { statusData } from "../utils/constants/status";
+import { statusData } from "../utils/constants/index";
 import { AppButton } from "../ui-libraries/AppButton";
 
 type Props = {
@@ -16,7 +16,6 @@ export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
 export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened }) => {
   const [status, setStatus] = useState<number>(user.status);
-  console.log("status", status);
 
   const userRef = doc(db, "users", user.uid) as DocumentReference<User>;
 

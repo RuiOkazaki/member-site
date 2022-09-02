@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FC } from "react";
 import { HomeIcon, UsersIcon, TextIcon, StudyMeetingIcon, MemberIcon, EventIcon } from "../ui-libraries/icon";
-import { LINKS } from "../utils/constants/link";
+import { LINKS } from "../utils/constants/index";
 
 type MenuType = {
   icon: JSX.Element;
