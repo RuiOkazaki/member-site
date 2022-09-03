@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from "react";
 import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { AppTable } from "src/components/ui-libraries/AppTable";
-import { User } from "src/components/utils/libs/firebase/index";
-import { useFetchMembers } from "src/hooks/user/useFetchUserList";
+import { User } from "src/modules/user";
+import { useFetchUserList } from "src/hooks/user/useFetchUserList";
 
 const memberStatus = (status: number) => {
   switch (status) {
@@ -42,7 +42,7 @@ const TABLE_HEADER = {
 };
 
 export const Admin: FC = () => {
-  const { fetchUser, userList, isLoading } = useFetchMembers();
+  const { fetchUser, userList, isLoading } = useFetchUserList();
 
   useEffect(() => {
     fetchUser();

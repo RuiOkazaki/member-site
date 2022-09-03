@@ -2,7 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { useCurrentUser } from "src/global-states/atoms";
-import { User } from "src/components/utils/libs/firebase/index";
+import { User } from "src/modules/user";
 import { LINKS, UID } from "../utils/constants/index";
 import { db } from "../utils/libs/firebase";
 import { AppLoading } from "./AppLoading";
@@ -19,6 +19,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   useEffect(() => {
     const uid: string | null = localStorage.getItem(UID);
     if (!uid) {
+      // uidがない場合は、ログインしていないと判断して、ログイン画面にリダイレクトする
       router.push(LINKS.LOGIN);
       return;
     }
@@ -39,8 +40,35 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   }, []);
 
   if (isLoading) return <AppLoading />;
+
+  // currentUserがない場合は、ログインしていないと判断して、loginにリダイレクト
   if (!currentUser) {
     router.push(LINKS.LOGIN);
+    return null;
+  }
+
+  const isSignUpPage = router.pathname === LINKS.SIGNUP;
+  const isAdminPage = router.pathname === LINKS.ADMIN;
+  const isAdminIdPage = router.pathname === LINKS.ADMINID;
+
+  const isNotAdminUser = currentUser?.position <= 1;
+  const isApproved = currentUser?.status === 1;
+
+  // 承認されていて、signUpページにいる場合は、ホーム画面にリダイレクト
+  if (isApproved && isSignUpPage) {
+    router.push(LINKS.HOME);
+  }
+
+  // 承認されてなくて、signUpページにいない場合は、signUpページにリダイレクト
+  if (!isApproved && !isSignUpPage) {
+    router.push(LINKS.SIGNUP);
+  }
+
+  // adminではないユーザーが、adminページ関連にいる場合は、ホーム画面にリダイレクト
+  if (isNotAdminUser && (isAdminPage || isAdminIdPage)) {
+    router.push(LINKS.HOME);
+    // TODO: toast表示したいがレンダリン回数的に4つ表示してしまう
+    console.log("管理者しか見れません");
     return null;
   }
 

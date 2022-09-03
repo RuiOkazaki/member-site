@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { Modal as MantineModal, Select } from "@mantine/core";
 import { doc, DocumentReference, updateDoc } from "firebase/firestore";
-import { User } from "src/components/utils/libs/firebase/index";
+import { User } from "src/modules/user";
 import { db } from "../utils/libs/firebase";
 import { statusData } from "../utils/constants/index";
 import { AppButton } from "../ui-libraries/AppButton";

@@ -6,8 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { FC, useEffect, useState } from "react";
 import { AuthProvider } from "src/components/ui-libraries/AuthProvider";
 import { AuthModal } from "src/components/feature/AuthModal";
-import { TECH_UNI, LINKS } from "src/components/utils/constants/index";
-import { Layout } from "src/components/layout";
+import { TECH_UNI } from "src/components/utils/constants/index";
 
 const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   return (
@@ -18,26 +17,20 @@ const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   );
 };
 
-const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
+const AppPage: FC<AppProps> = ({ Component, pageProps }) => {
   const [opened, setOpened] = useState(false);
   const [password, setPassword] = useState<string | null>(null);
 
   useEffect(() => {
     setPassword(localStorage.getItem(TECH_UNI));
     setOpened(true);
-  }, [opened]);
+  }, []);
 
   if (!password) return <AuthModal opened={opened} setOpened={setOpened} />;
-  if (router.pathname === LINKS.LOGIN) return <Component {...pageProps} />;
-  // if (currentUser?.status === 0 && router.pathname !== LINKS.SIGNUP && router.pathname !== LINKS.LOGIN) {
-  //   return <h1>承認待ちです。</h1>;
-  // }
 
   return (
     <AuthProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </AuthProvider>
   );
 };
