@@ -13,9 +13,9 @@ const MENU: MenuType = [
   { icon: <HomeIcon />, label: "ホーム", href: LINKS.HOME },
   { icon: <EventIcon />, label: "イベント", href: LINKS.EVENT },
   { icon: <StudyMeetingIcon />, label: "勉強会", href: LINKS.STUDYMEETING },
-  { icon: <UsersIcon />, label: "1on1", href: LINKS.ONEONONE },
   { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
   { icon: <TextIcon />, label: "教材", href: LINKS.TEACHINGMATERIAL },
+  { icon: <UsersIcon />, label: "1on1", href: LINKS.ONEONONE },
 ];
 
 export const SideBar: FC = () => {
