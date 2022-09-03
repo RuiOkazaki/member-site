@@ -1,39 +1,8 @@
-import { FC, useEffect, useState } from "react";
-import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
+import { FC, useEffect } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { AppTable } from "src/components/ui-libraries/AppTable";
-import { User } from "src/modules/user";
 import { useFetchUserList } from "src/hooks/user/useFetchUserList";
-
-const memberStatus = (status: number) => {
-  switch (status) {
-    case 1:
-      return "✅ 登録済み";
-    case 2:
-      return "❌ 退会";
-    default:
-      return "📝 未登録";
-  }
-};
-
-type StatusProps = {
-  status: number;
-  user: User;
-};
-const Status: FC<StatusProps> = ({ status, user }) => {
-  const [statusModalOpened, setStatusModalOpened] = useState<boolean>(false);
-
-  const handleOpen = () => {
-    setStatusModalOpened(!statusModalOpened);
-  };
-
-  return (
-    <>
-      <div onClick={handleOpen}>{memberStatus(status)}</div>
-      <MemberStatusEditContentsModal user={user} opened={statusModalOpened} setOpened={handleOpen} />
-    </>
-  );
-};
+import { Status } from "src/components/feature/Status";
 
 const TABLE_HEADER = {
   name: "Name",
@@ -50,8 +19,8 @@ export const Admin: FC = () => {
 
   const memberArray = userList?.map((user) => {
     return {
-      name: user.displayName ?? "",
-      email: user.email ?? "",
+      name: user.displayName,
+      email: user.email,
       status: <Status status={user.status} user={user} />,
     };
   });
