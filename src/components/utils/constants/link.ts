@@ -9,4 +9,5 @@ export const LINKS = {
   LOGIN: "/login",
   ADMIN: "/admin",
   ADMINID: "/admin/[id]",
+  QUESTION: "/question",
 };

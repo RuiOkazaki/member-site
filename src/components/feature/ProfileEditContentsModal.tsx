@@ -21,6 +21,7 @@ import {
 import { AppButton } from "../ui-libraries/AppButton";
 import { LINKS } from "../utils/constants/link";
 import { UID } from "../utils/constants/tokens";
+import { AppLink } from "../ui-libraries/AppLink";
 
 type Props = {
   currentUser: User;
@@ -133,6 +134,7 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
             その他
           </Tabs.Tab>
         </Tabs.List>
+
         <Tabs.Panel value="アカウント">
           <Group className="pt-4">
             <Avatar
@@ -270,13 +272,13 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
             </AppButton>
           </div>
         </Tabs.Panel>
+
         <Tabs.Panel value="その他">
-          <Text weight="bold">メール通知</Text>
-          <Text weight="bold">
-            <Text weight="bold">テーマカラー</Text>
-          </Text>
-          <div>
-            <Text weight="bold">個人アカウントの管理</Text>
+          {/* <Text weight="bold">メール通知</Text> */}
+          <Text weight="bold">テーマカラー</Text>
+
+          <div className="pt-4">
+            <Text weight="bold">アカウントの管理</Text>
             <AppButton
               type="button"
               color="red"
@@ -289,10 +291,24 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
               <LogoutIcon />
               ログアウト
             </AppButton>
-            <AppButton type="button" color="red" size="xs" radius="md" variant="subtle" className="mx-auto mb-5">
+
+            {/* 当分は使わないので、コメントアウト */}
+            {/* <AppButton type="button" color="red" size="xs" radius="md" variant="subtle" className="mx-auto mb-5"> 
               <DeleteIcon />
               アカウントの削除
-            </AppButton>
+            </AppButton> */}
+          </div>
+
+          <Text weight="bold">Tech.Uni HPについて知りたい方はこちら👇</Text>
+          <AppLink href="https://techuni.org/">techuni.org</AppLink>
+
+          <div className="pt-2">
+            <Text weight="bold">Tech.Uniへの意見箱</Text>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdqkpL8X24cfDlVvFlthBwoQhwZwcHJ64L7XzIM27IoegJH3w/viewform?embedded=true"
+              width="640"
+              height="700"
+            ></iframe>
           </div>
         </Tabs.Panel>
       </Tabs>
