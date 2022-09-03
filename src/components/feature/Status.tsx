@@ -16,8 +16,9 @@ const memberStatus = (status: number) => {
 type Props = {
   status: number;
   user: User;
+  onSave: (uid: string, status: number) => Promise<void>;
 };
-export const Status: FC<Props> = ({ status, user }) => {
+export const Status: FC<Props> = ({ status, user, onSave }) => {
   const [statusModalOpened, setStatusModalOpened] = useState<boolean>(false);
 
   const handleOpen = () => {
@@ -27,7 +28,7 @@ export const Status: FC<Props> = ({ status, user }) => {
   return (
     <>
       <div onClick={handleOpen}>{memberStatus(status)}</div>
-      <MemberStatusEditContentsModal user={user} opened={statusModalOpened} setOpened={handleOpen} />
+      <MemberStatusEditContentsModal user={user} opened={statusModalOpened} setOpened={handleOpen} onSave={onSave} />
     </>
   );
 };
