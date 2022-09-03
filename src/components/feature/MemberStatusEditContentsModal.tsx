@@ -22,7 +22,6 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
   const handleSave = async () => {
     await updateDoc(userRef, { status });
     setStatus(status);
-    console.log("あああ", status);
     setOpened();
   };
 
@@ -46,7 +45,6 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
         value={String(status)}
         dropdownComponent="div"
         onChange={(e) => {
-          console.log(e);
           setStatus(Number(e));
         }}
       />

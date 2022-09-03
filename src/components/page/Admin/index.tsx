@@ -1,15 +1,9 @@
-import { Table } from "@mantine/core";
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
+import { AppTable } from "src/components/ui-libraries/AppTable";
 import { User } from "src/components/utils/libs/firebase/index";
 import { useFetchMembers } from "src/hooks/user/useFetchUserList";
-
-const TABLE_HEADER = {
-  name: "Name",
-  email: "Email",
-  status: "Status",
-};
 
 const memberStatus = (status: number) => {
   switch (status) {
@@ -28,6 +22,7 @@ type StatusProps = {
 };
 const Status: FC<StatusProps> = ({ status, user }) => {
   const [statusModalOpened, setStatusModalOpened] = useState<boolean>(false);
+
   const handleOpen = () => {
     setStatusModalOpened(!statusModalOpened);
   };
@@ -40,39 +35,10 @@ const Status: FC<StatusProps> = ({ status, user }) => {
   );
 };
 
-type Props = {
-  header: typeof TABLE_HEADER;
-  body: {
-    name: string;
-    email: string;
-    status: ReactNode;
-  }[];
-};
-
-const TableComponent: FC<Props> = ({ header, body }) => {
-  return (
-    <Table>
-      <thead>
-        <tr>
-          {Object.values(header).map((value) => {
-            return <th key={value}>{value}</th>;
-          })}
-        </tr>
-      </thead>
-
-      <tbody>
-        {body.map((obj, i) => {
-          return (
-            <tr key={i}>
-              {Object.values(obj).map((value, i) => {
-                return <td key={i}>{value}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
-  );
+const TABLE_HEADER = {
+  name: "Name",
+  email: "Email",
+  status: "Status",
 };
 
 export const Admin: FC = () => {
@@ -84,18 +50,14 @@ export const Admin: FC = () => {
 
   const memberArray = userList?.map((user) => {
     return {
-      name: user.displayName,
-      email: user.email,
+      name: user.displayName ?? "",
+      email: user.email ?? "",
       status: <Status status={user.status} user={user} />,
     };
   });
-  if (memberArray === undefined) return <AppLoading />;
 
+  if (memberArray === undefined) return <AppLoading />;
   if (isLoading || userList == null) return <AppLoading />;
 
-  return (
-    <>
-      <TableComponent header={TABLE_HEADER} body={memberArray} />
-    </>
-  );
+  return <AppTable header={TABLE_HEADER} body={memberArray} />;
 };
