@@ -10,11 +10,12 @@ type Props = {
   user: User;
   opened: boolean;
   setOpened: () => void;
+  setUserList: (user: User) => User[];
 };
 
 export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
-export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened }) => {
+export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened, setUserList }) => {
   const [status, setStatus] = useState<number>(user.status);
 
   const userRef = doc(db, "users", user.uid) as DocumentReference<User>;
@@ -22,6 +23,14 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
   const handleSave = async () => {
     await updateDoc(userRef, { status });
     setStatus(status);
+    const foo = (prev) => {
+      console.log("prev", prev);
+      if (user.uid === userRef.id) {
+        return { ...user, status };
+      }
+      return user;
+    };
+    setUserList(foo(user));
     setOpened();
   };
 

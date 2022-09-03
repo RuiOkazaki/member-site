@@ -17,5 +17,5 @@ export const useFetchUserList = () => {
     }
   };
 
-  return { fetchUser, userList, isLoading };
+  return { fetchUser, userList, setUserList, isLoading };
 };

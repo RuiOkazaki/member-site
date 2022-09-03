@@ -11,7 +11,7 @@ const TABLE_HEADER = {
 };
 
 export const Admin: FC = () => {
-  const { fetchUser, userList, isLoading } = useFetchUserList();
+  const { fetchUser, userList, setUserList, isLoading } = useFetchUserList();
 
   useEffect(() => {
     fetchUser();
@@ -21,7 +21,7 @@ export const Admin: FC = () => {
     return {
       name: user.displayName,
       email: user.email,
-      status: <Status status={user.status} user={user} />,
+      status: <Status status={user.status} user={user} setUserList={setUserList} />,
     };
   });
 
