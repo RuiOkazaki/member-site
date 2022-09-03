@@ -17,11 +17,20 @@ export const Admin: FC = () => {
     fetchUser();
   }, []);
 
+  const handleSave = async (uid: string, status: number) => {
+    const users = userList?.map((user) => {
+      if (user.uid === uid) return { ...user, status };
+      return user;
+    });
+    if (users == null) return;
+    setUserList(users);
+  };
+
   const memberArray = userList?.map((user) => {
     return {
       name: user.displayName,
       email: user.email,
-      status: <Status status={user.status} user={user} setUserList={setUserList} />,
+      status: <Status status={user.status} user={user} onSave={handleSave} />,
     };
   });
 
