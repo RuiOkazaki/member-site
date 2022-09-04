@@ -1,6 +1,15 @@
+import { Text } from "@mantine/core";
 import Link from "next/link";
 import { FC } from "react";
-import { HomeIcon, UsersIcon, TextIcon, StudyMeetingIcon, MemberIcon, EventIcon } from "../ui-libraries/icon";
+import {
+  HomeIcon,
+  UsersIcon,
+  TextIcon,
+  StudyMeetingIcon,
+  MemberIcon,
+  EventIcon,
+  QuestionBoxIcon,
+} from "../ui-libraries/icon";
 import { LINKS } from "../utils/constants/link";
 
 type MenuType = {
@@ -11,9 +20,10 @@ type MenuType = {
 
 const MENU: MenuType = [
   { icon: <HomeIcon />, label: "ホーム", href: LINKS.HOME },
+  { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
+  { icon: <QuestionBoxIcon />, label: "質問箱", href: LINKS.QUESTION },
   { icon: <EventIcon />, label: "イベント", href: LINKS.EVENT },
   { icon: <StudyMeetingIcon />, label: "勉強会", href: LINKS.STUDYMEETING },
-  { icon: <MemberIcon />, label: "メンバー", href: LINKS.MEMBER },
   { icon: <TextIcon />, label: "教材", href: LINKS.TEACHINGMATERIAL },
   { icon: <UsersIcon />, label: "1on1", href: LINKS.ONEONONE },
 ];
@@ -27,9 +37,11 @@ export const SideBar: FC = () => {
             return (
               <li key={menu.label}>
                 <Link href={menu.href}>
-                  <a className="flex items-center justify-center py-3 transition delay-75 ease-in hover:translate-x-1 hover:bg-gray-100 md:justify-start md:pl-2">
+                  <a className="flex items-center justify-start py-3 pl-2 pr-8 transition delay-75 ease-in hover:translate-x-1 hover:bg-gray-100">
                     {menu.icon}
-                    <span className="hidden md:inline-block md:pr-8 md:pl-2 md:font-bold">{menu.label}</span>
+                    <Text size="sm" weight="bold" className="pl-2 text-gray-800 md:inline-block">
+                      {menu.label}
+                    </Text>
                   </a>
                 </Link>
               </li>

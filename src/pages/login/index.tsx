@@ -6,5 +6,3 @@ const LoginPage: NextPage = () => {
 };
 
 export default LoginPage;
-
-// todo: LoginButtonを共通化してそっから持ってくる
