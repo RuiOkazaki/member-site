@@ -37,43 +37,28 @@ export const MemberDetail = () => {
           </div>
         </div>
       </div>
-      {user.github ? (
-        <div className="mt-6 flex flex-col">
-          <div className="flex">
-            <a href={`http://www.github.com/${user.github}`}>
-              <img
-                src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${user.github}&count_private=true&langs_count=10&title_color=3382ed&text_color=ffffff&icon_color=3382ed&bg_color=0f172a&hide_border=true&locale=en&custom_title=Top%20%Languages`}
-                alt="Top Languages"
-              />
-            </a>
-            <div className="mb-2 flex flex-col">
-              <a href={`http://www.github.com/${user.github}`}>
-                <img
-                  src={`https://github-readme-stats.vercel.app/api?username=${user.github}&show_icons=true&hide=stars,contribs&count_private=true&title_color=3382ed&text_color=ffffff&icon_color=3382ed&bg_color=0f172a&hide_border=true&show_icons=true`}
-                  alt="github-readme-stats"
-                />
-              </a>
-              <a href={`http://www.github.com/${user.github}`}>
-                <img
-                  src={`https://github-readme-streak-stats.herokuapp.com/?user=${user.github}&count_private=true&stroke=ffffff&background=0f172a&ring=3382ed&fire=3382ed&currStreakNum=ffffff&currStreakLabel=3382ed&sideNums=ffffff&sideLabels=ffffff&dates=ffffff&hide_border=true`}
-                  alt="github-readme-streak-stats"
-                />
-              </a>
-            </div>
-          </div>
-          <a href={`http://www.github.com/${user.github}`}>
+      <div className="mt-6 flex flex-col">
+        <div className="flex">
+          <img
+            src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${user.github}&count_private=true&langs_count=10&title_color=3382ed&text_color=ffffff&icon_color=3382ed&bg_color=0f172a&hide_border=true&locale=en&custom_title=Top%20%Languages`}
+            alt="Top Languages"
+          />
+          <div className="mb-2 flex flex-col">
             <img
-              src={`https://activity-graph.herokuapp.com/graph?username=${user.github}&count_private=true&bg_color=0f172a&color=ffffff&line=3382ed&point=ffffff&area_color=0f172a&area=true&hide_border=true&custom_title=GitHub%20Commits%20Graph`}
-              alt="GitHub Commits Graph"
+              src={`https://github-readme-stats.vercel.app/api?username=${user.github}&show_icons=true&hide=stars,contribs&count_private=true&title_color=3382ed&text_color=ffffff&icon_color=3382ed&bg_color=0f172a&hide_border=true&show_icons=true`}
+              alt="github-readme-stats"
             />
-          </a>
+            <img
+              src={`https://github-readme-streak-stats.herokuapp.com/?user=${user.github}&count_private=true&stroke=ffffff&background=0f172a&ring=3382ed&fire=3382ed&currStreakNum=ffffff&currStreakLabel=3382ed&sideNums=ffffff&sideLabels=ffffff&dates=ffffff&hide_border=true`}
+              alt="github-readme-streak-stats"
+            />
+          </div>
         </div>
-      ) : (
-        <div>
-          {/* TODO: GitHubのアカウント名が設定されていない場合はEmpty Viewを表示する */}
-          Empty View
-        </div>
-      )}
+        <img
+          src={`https://activity-graph.herokuapp.com/graph?username=${user.github}&count_private=true&bg_color=0f172a&color=ffffff&line=3382ed&point=ffffff&area_color=0f172a&area=true&hide_border=true&custom_title=GitHub%20Commits%20Graph`}
+          alt="GitHub Commits Graph"
+        />
+      </div>
     </div>
   );
 };
