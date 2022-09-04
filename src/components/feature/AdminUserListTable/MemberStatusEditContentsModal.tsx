@@ -10,11 +10,12 @@ type Props = {
   user: User;
   opened: boolean;
   setOpened: () => void;
+  onSave: (uid: string, status: number) => Promise<void>;
 };
 
 export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
-export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened }) => {
+export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened, onSave }) => {
   const [status, setStatus] = useState<number>(user.status);
 
   const userRef = doc(db, "users", user.uid) as DocumentReference<User>;
@@ -46,6 +47,7 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
         dropdownComponent="div"
         onChange={(e) => {
           setStatus(Number(e));
+          onSave(user.uid, Number(e));
         }}
       />
 

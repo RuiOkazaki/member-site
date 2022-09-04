@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { AppTable } from "src/components/ui-libraries/AppTable";
 import { useFetchUserList } from "src/hooks/user/useFetchUserList";
-import { Status } from "src/components/feature/Status";
+import { Status } from "src/components/feature/AdminUserListTable/Status";
 
 const TABLE_HEADER = {
   name: "Name",
