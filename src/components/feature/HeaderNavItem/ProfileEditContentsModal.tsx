@@ -6,8 +6,8 @@ import { signOut } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { User } from "src/modules/user";
-import { auth, db } from "../utils/libs/firebase";
-import { facultyData, gradeData, fieldDetailsData, interestData, LINKS, UID } from "../utils/constants/index";
+import { auth, db } from "../../utils/libs/firebase";
+import { facultyData, gradeData, fieldDetailsData, interestData, LINKS, UID } from "../../utils/constants/index";
 import {
   GitHubIcon,
   InfoIcon,
@@ -16,8 +16,8 @@ import {
   SettingIcon,
   TwitterIcon,
   DeleteIcon,
-} from "../ui-libraries/icon";
-import { AppButton } from "../ui-libraries/AppButton";
+} from "../../ui-libraries/icon";
+import { AppButton } from "../../ui-libraries/AppButton";
 
 type Props = {
   currentUser: User;
