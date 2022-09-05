@@ -25,7 +25,8 @@ export const useUploadProfileIcon = ({ formData, setFormData }: Props): Response
   const handleOnChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       const canvas = await loadImage(e.target.files[0], {
-        maxWidth: 1200,
+        maxWidth: 200,
+        maxHeight: 200,
         canvas: true,
       });
       // NOTE: canvas.imageがHTMLCanvasElement | HTMLImageElementとなっており、toBlobを使おうとするとコンパイルエラーになるのでキャストしている

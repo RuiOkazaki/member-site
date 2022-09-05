@@ -210,7 +210,6 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
               className="mt-4"
             />
             <TextInput
-              required
               label="twitter"
               icon={<TwitterIcon />}
               placeholder="techuni"
@@ -219,7 +218,6 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
               className="mt-4"
             />
             <TextInput
-              required
               label="instagram"
               icon={<InstagramIcon />}
               placeholder="techuni"
@@ -241,6 +239,7 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
           />
           <MultiSelect
             label="よく使用する言語・フレームワーク・ライブラリー"
+            required
             placeholder="Next.js"
             searchable
             nothingFound="見つかりませんでした。"
@@ -253,6 +252,7 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
           />
           <TextInput
             label="一言"
+            required
             placeholder="はじめまして！"
             value={bio}
             onChange={(e) => setFormData({ ...formData, bio: e.target.value })}

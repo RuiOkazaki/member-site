@@ -54,7 +54,7 @@ export const EventCard: FC<EventCardProps> = ({ date, field, organizerUuid, phot
             <FieldInterest field={field} />
           </div>
           <div>
-            <p>主催者</p>
+            <Text weight="bold">主催者</Text>
             <ProfileImg displayName={organizer?.displayName} photoURL={organizer?.photoURL} />
           </div>
         </div>
