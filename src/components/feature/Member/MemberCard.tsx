@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, memo } from "react";
 import Link from "next/link";
-import { GitHubIcon, TwitterIcon, InstagramIcon } from "src/components/ui-libraries/icon";
-import { fieldDetailsData } from "src/components/utils/constants/field";
+import { fieldDetailsData } from "src/components/utils/constants/index";
 import { User } from "src/modules/user";
 import { FieldInterest } from "./FieldInterest";
 import { MemberProfileIcon } from "./MemberProfileIcon";
@@ -73,35 +72,6 @@ export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) =
   );
 };
 
-type MemberSNSLinkProps = {
-  github?: string;
-  twitter?: string;
-  instagram?: string;
-};
-export const MemberSNSLink: FC<MemberSNSLinkProps> = ({ github, twitter, instagram }) => {
-  const snsLinks = [
-    { name: "github", url: github, icon: <GitHubIcon /> },
-    { name: "twitter", url: twitter, icon: <TwitterIcon /> },
-    { name: "instagram", url: instagram, icon: <InstagramIcon /> },
-  ];
-
-  return (
-    <div className="flex w-[120px] justify-between px-2">
-      {snsLinks.map((snsLink, index) => {
-        if (snsLink.url) {
-          return (
-            <Link href={`https://${snsLink.name}.com/${snsLink.url}`} key={index}>
-              <a target="_blank" rel="noopener noreferrer">
-                {snsLink.icon}
-              </a>
-            </Link>
-          );
-        }
-      })}
-    </div>
-  );
-};
-
 type RibbonProps = { position: number };
 const Ribbon: FC<RibbonProps> = ({ position }) => {
   const positionTitle = (position: number) => {
@@ -168,7 +138,11 @@ export const MemberCard: FC<MemberCardProps> = ({ data }) => {
   return (
     <Link href={`member/${data.uid}`} className="cursor-pointer">
       <a>
-        <MemberProfileIcon displayName={data.displayName} photoURL={data?.photoURL} />
+        <MemberProfileIcon
+          displayName={data.displayName}
+          photoURL={data?.photoURL}
+          style={"flex flex-col items-center justify-center"}
+        />
       </a>
     </Link>
   );

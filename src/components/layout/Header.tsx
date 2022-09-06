@@ -5,8 +5,8 @@ import Image from "next/image";
 import { Avatar } from "@mantine/core";
 import { useCurrentUser } from "src/global-states/atoms";
 import { CalendarIcon } from "../ui-libraries/icon";
-import { LINKS } from "../utils/constants/link";
-import { ProfileEditContentsModal } from "../feature/ProfileEditContentsModal";
+import { LINKS } from "../utils/constants/index";
+import { ProfileEditContentsModal } from "../feature/HeaderNavItem/ProfileEditContentsModal";
 
 export const NavItem: FC = memo(() => {
   const { currentUser, setCurrentUser } = useCurrentUser();

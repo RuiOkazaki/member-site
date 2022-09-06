@@ -1,9 +1,9 @@
 import { Badge, Text } from "@mantine/core";
 import { FC } from "react";
-import { interestData } from "src/components/utils/constants/field";
+import { interestData } from "src/components/utils/constants";
 
 type Props = {
-  field: string;
+  field: string | null;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
 };
 export const FieldInterest: FC<Props> = ({ field, size }) => {

@@ -1,8 +1,7 @@
 import { FC, FormEvent, useState } from "react";
 import { Modal as MantineModal } from "@mantine/core";
 import { AppTextInput } from "../ui-libraries/AppTextInput";
-import { techUniPassword } from "../utils/constants/env";
-import { TECH_UNI } from "../utils/constants/tokens";
+import { techUniPassword, TECH_UNI } from "../utils/constants/index";
 
 type Props = {
   opened: boolean;

@@ -2,37 +2,28 @@ import { FC, useState } from "react";
 import { Modal as MantineModal, Select } from "@mantine/core";
 import { doc, DocumentReference, updateDoc } from "firebase/firestore";
 import { User } from "src/modules/user";
-import { db } from "../utils/libs/firebase";
-import { statusData } from "../utils/constants/field";
-import { AppButton } from "../ui-libraries/AppButton";
+import { db } from "src/components/utils/libs/firebase";
+import { statusData } from "src/components/utils/constants";
+import { AppButton } from "src/components/ui-libraries/AppButton";
 
 type Props = {
   user: User;
   opened: boolean;
   setOpened: () => void;
+  onSave: (uid: string, status: number) => Promise<void>;
 };
 
 export type FormData = Omit<User, "uid" | "createdAt" | "id" | "active">;
 
-export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened }) => {
+export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpened, onSave }) => {
   const [status, setStatus] = useState<number>(user.status);
 
   const userRef = doc(db, "users", user.uid) as DocumentReference<User>;
 
   const handleSave = async () => {
     await updateDoc(userRef, { status });
+    setStatus(status);
     setOpened();
-  };
-
-  const statusBody = () => {
-    switch (user.status) {
-      case 1:
-        return { status: 1, message: "登録済み" };
-      case 2:
-        return { status: 2, message: "退会済み" };
-      default:
-        return { status: 0, message: "未登録" };
-    }
   };
 
   return (
@@ -52,10 +43,11 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
         placeholder="選択してください"
         data={statusData}
         className="mt-4"
-        value={String(statusBody().status)}
+        value={String(status)}
         dropdownComponent="div"
         onChange={(e) => {
           setStatus(Number(e));
+          onSave(user.uid, Number(e));
         }}
       />
 
@@ -67,5 +59,3 @@ export const MemberStatusEditContentsModal: FC<Props> = ({ user, opened, setOpen
     </MantineModal>
   );
 };
-
-// todo: 最も興味のある分野を選んだら、fieldDetailsが連動するようにする

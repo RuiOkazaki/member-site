@@ -1,13 +1,3 @@
-export const interestData = [
-  { value: "フロントエンド", label: "フロントエンド", color: "orange" },
-  { value: "モバイル", label: "モバイル", color: "green" },
-  { value: "バックエンド", label: "バックエンド", color: "gray" },
-  { value: "サーバーサイド", label: "サーバーサイド", color: "purple" },
-  { value: "機械学習", label: "機械学習", color: "outline" },
-  { value: "データサイエンス", label: "データサイエンス", color: "red" },
-  { value: "ロボット", label: "ロボット", color: "lime" },
-];
-
 export const fieldDetailsData = [
   { value: "React", label: "React", color: "blue" },
   { value: "Vue", label: "Vue", color: "green" },
@@ -27,10 +17,4 @@ export const fieldDetailsData = [
   { value: "Firebase", label: "Firebase", color: "orange" },
   { value: "AWS", label: "AWS", color: "black" },
   { value: "GCP", label: "GCP", color: "red" },
-];
-
-export const statusData = [
-  { value: "0", label: "審査中" },
-  { value: "1", label: "登録済み" },
-  { value: "2", label: "退会済み" },
 ];

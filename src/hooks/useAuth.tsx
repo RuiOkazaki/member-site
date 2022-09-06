@@ -11,8 +11,7 @@ import {
 import { doc, getDoc, Timestamp, DocumentData, setDoc, DocumentReference } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { LINKS } from "src/components/utils/constants/link";
-import { UID } from "src/components/utils/constants/tokens";
+import { LINKS, UID } from "src/components/utils/constants/index";
 import { auth, db } from "src/components/utils/libs/firebase";
 
 type ReturnType = {

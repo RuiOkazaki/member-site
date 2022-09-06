@@ -1,50 +1,41 @@
-import { Table } from "@mantine/core";
-import { FC, useCallback, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
+import { AppTable } from "src/components/ui-libraries/AppTable";
 import { useFetchUserList } from "src/hooks/user/useFetchUserList";
+import { Status } from "src/components/feature/AdminUserListTable/Status";
+
+const TABLE_HEADER = {
+  name: "Name",
+  email: "Email",
+  status: "Status",
+};
 
 export const Admin: FC = () => {
-  const { fetchUser, userList, isLoading } = useFetchUserList();
+  const { fetchUser, userList, setUserList, isLoading } = useFetchUserList();
 
   useEffect(() => {
     fetchUser();
   }, []);
 
-  const memberStatus = useCallback((status: number) => {
-    switch (status) {
-      case 1:
-        return "✅ 登録済み";
-      case 2:
-        return "❌ 退会";
-      default:
-        return "📝 未登録";
-    }
-  }, []);
+  const handleSave = async (uid: string, status: number) => {
+    const users = userList?.map((user) => {
+      if (user.uid === uid) return { ...user, status };
+      return user;
+    });
+    if (users == null) return;
+    setUserList(users);
+  };
 
-  if (userList == null || isLoading) return <AppLoading />;
+  const memberArray = userList?.map((user) => {
+    return {
+      name: user.displayName,
+      email: user.email,
+      status: <Status status={user.status} user={user} onSave={handleSave} />,
+    };
+  });
 
-  return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {userList.map((user) => {
-          return (
-            <>
-              <tr>
-                <td>{user.displayName}</td>
-                <td>{user.email}</td>
-                <td>{memberStatus(user.status)}</td>
-              </tr>
-            </>
-          );
-        })}
-      </tbody>
-    </Table>
-  );
+  if (memberArray === undefined) return <AppLoading />;
+  if (isLoading || userList == null) return <AppLoading />;
+
+  return <AppTable header={TABLE_HEADER} body={memberArray} />;
 };
