@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { useCurrentUser } from "src/global-states/atoms";
 import { User } from "src/modules/user";
-import { LINKS, UID } from "../utils/constants/index";
+import { ADMINLINKS, LINKS, UID } from "../utils/constants/index";
 import { db } from "../utils/libs/firebase";
 import { AppLoading } from "./AppLoading";
 
@@ -48,8 +48,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   }
 
   const isSignUpPage = router.pathname === LINKS.SIGNUP;
-  const isAdminPage = router.pathname === LINKS.ADMIN;
-  const isAdminIdPage = router.pathname === LINKS.ADMINID;
+  const isAdminPage = router.pathname.includes(ADMINLINKS.HOME);
 
   const isNotAdminUser = currentUser?.position <= 1;
   const isApproved = currentUser?.status === 1;
@@ -65,7 +64,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   }
 
   // adminではないユーザーが、adminページ関連にいる場合は、ホーム画面にリダイレクト
-  if (isNotAdminUser && (isAdminPage || isAdminIdPage)) {
+  if (isNotAdminUser && isAdminPage) {
     router.push(LINKS.HOME);
     // TODO: toast表示したいがレンダリン回数的に4つ表示してしまう
     console.log("管理者しか見れません");
