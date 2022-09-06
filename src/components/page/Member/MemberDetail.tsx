@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { Group, Spoiler, Text } from "@mantine/core";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { useFetchUser } from "src/hooks/user/useFetchUser";
-import { MemberSNSLinks } from "src/components/feature/Member";
+import { FieldInterest, MemberSNSLinks } from "src/components/feature/Member";
 
 export const MemberDetail = () => {
   const { fetchUser, user, isLoading } = useFetchUser();
@@ -14,30 +15,34 @@ export const MemberDetail = () => {
     }
   }, [router.query.id]);
 
-  if (isLoading || user == null) return <AppLoading />;
+  if (isLoading || user == null || user.field === null) return <AppLoading />;
 
   // TODO: コンポーネントの再利用がレイアウト的にキツくてできなかったので、リファクタする
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col pt-5">
       <div className="flex items-start">
         <img src={user.photoURL} alt={`${user.displayName}の画像`} className="mr-8 mt-4 w-28 rounded-full" />
+
         <div className="flex">
           <div className="mt-4 flex grow flex-col items-start">
-            <p className="pt-1 text-center text-2xl">{user.displayName}</p>
+            <Text className="py-1 text-2xl" weight={500}>
+              {user.displayName}
+            </Text>
             {/* TODO: これをモーダル表示にしたい */}
-            {/* <InteresstGroup field={user.field} fieldDetails={user.fieldDetails} /> */}
-            <div className="rounded-lg py-1">
-              <div className="mt-2">
-                <p className="w-full line-clamp-2">{user.bio}</p>
-              </div>
-              {/* TODO: モーダル表示 */}
-              {user.bio.length >= 100 && <div className="text-right">もっと見る</div>}
+            <FieldInterest field={user.field} />
+
+            <div className="my-2">
+              <Spoiler maxHeight={50} showLabel="もっと見る" hideLabel="隠す">
+                <Text>{user.bio}</Text>
+              </Spoiler>
             </div>
+            {/* TODO: モーダル表示 */}
             <MemberSNSLinks github={user.github} twitter={user.twitter} instagram={user.instagram} />
           </div>
         </div>
       </div>
-      <div className="mt-6 flex flex-col">
+
+      <Group mt={40}>
         <div className="flex">
           <img
             src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${user.github}&count_private=true&langs_count=10&title_color=3382ed&text_color=ffffff&icon_color=3382ed&bg_color=0f172a&hide_border=true&locale=en&custom_title=Top%20%Languages`}
@@ -58,7 +63,7 @@ export const MemberDetail = () => {
           src={`https://activity-graph.herokuapp.com/graph?username=${user.github}&count_private=true&bg_color=0f172a&color=ffffff&line=3382ed&point=ffffff&area_color=0f172a&area=true&hide_border=true&custom_title=GitHub%20Commits%20Graph`}
           alt="GitHub Commits Graph"
         />
-      </div>
+      </Group>
     </div>
   );
 };
