@@ -15,7 +15,7 @@ export const MemberDetail = () => {
     }
   }, [router.query.id]);
 
-  if (isLoading || user == null || user.field === null) return <AppLoading />;
+  if (isLoading || user == null) return <AppLoading />;
 
   // TODO: コンポーネントの再利用がレイアウト的にキツくてできなかったので、リファクタする
   return (
