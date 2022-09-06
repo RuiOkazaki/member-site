@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { Text, ScrollArea, Group, Avatar, TextInput, Select, MultiSelect } from "@mantine/core";
 import { doc, DocumentReference, updateDoc } from "firebase/firestore";
 import { facultyData, gradeData } from "src/components/utils/constants/university";
-import { fieldDetailsData, interestData } from "src/components/utils/constants/field";
+import { fieldDetailsData, interestData } from "src/components/utils/constants/index";
 import { TwitterIcon, GitHubIcon, InstagramIcon } from "src/components/ui-libraries/icon";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { db } from "src/components/utils/libs/firebase";

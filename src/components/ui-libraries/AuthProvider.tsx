@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { useCurrentUser } from "src/global-states/atoms";
 import { User } from "src/modules/user";
-import { LINKS } from "../utils/constants/link";
-import { UID } from "../utils/constants/tokens";
+import { LINKS, UID } from "../utils/constants/index";
 import { db } from "../utils/libs/firebase";
 import { AppLoading } from "./AppLoading";
 

@@ -3,7 +3,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ChangeEvent, useState } from "react";
 import { storage } from "src/components/utils/libs/firebase";
 import { useCurrentUser } from "src/global-states/atoms";
-import { FormData } from "src/components/feature/ProfileEditContentsModal";
+import { FormData } from "src/components/feature/HeaderNavItem/ProfileEditContentsModal";
 
 type Props = {
   formData: FormData;

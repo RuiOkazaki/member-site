@@ -1,6 +1,6 @@
 import { Drawer, Text } from "@mantine/core";
 import { FC } from "react";
-import { Notification } from "../utils/libs/firebase/index";
+import { Notification } from "../../utils/libs/firebase/index";
 
 type Props = {
   bellOpened: boolean;

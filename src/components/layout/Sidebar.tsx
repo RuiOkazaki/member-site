@@ -1,6 +1,7 @@
 import { Text } from "@mantine/core";
 import Link from "next/link";
 import { FC } from "react";
+import { LINKS } from "../utils/constants/index";
 import {
   HomeIcon,
   UsersIcon,
@@ -10,7 +11,6 @@ import {
   EventIcon,
   QuestionBoxIcon,
 } from "../ui-libraries/icon";
-import { LINKS } from "../utils/constants/link";
 
 type MenuType = {
   icon: JSX.Element;
