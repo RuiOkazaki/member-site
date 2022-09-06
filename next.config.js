@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   rewrites: async () => {
-    return [{ source: "/", destination: "/root" }];
+    return [
+      { source: "/", destination: "/root" },
+      { source: "/admin", destination: "/admin/root" },
+    ];
   },
   experimental: {
     nftTracing: true,
