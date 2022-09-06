@@ -29,4 +29,5 @@ export const TwitterIcon: FC<Props> = ({ size, iconColor, className }) => {
 TwitterIcon.defaultProps = {
   className: "cursor-pointer",
   size: "small",
+  iconColor: "gray",
 };

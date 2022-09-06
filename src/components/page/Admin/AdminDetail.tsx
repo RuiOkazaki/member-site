@@ -1,10 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { InterestGroup, MemberSNSLink } from "src/components/feature/Member/MemberCard";
+import { InterestGroup } from "src/components/feature/Member/MemberCard";
 import { MemberProfileIcon } from "src/components/feature/Member/MemberProfileIcon";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
 import { MemberStatusEditContentsModal } from "src/components/feature/MemberStatusEditContentsModal";
 import { useFetchUser } from "src/hooks/user/useFetchUser";
+import { MemberSNSLinks } from "src/components/feature/Member";
 
 export const AdminDetail: FC = () => {
   const { fetchUser, user, isLoading } = useFetchUser();
@@ -36,9 +37,13 @@ export const AdminDetail: FC = () => {
   return (
     <>
       <MemberStatusEditContentsModal user={user} opened={isOpen} setOpened={handleOpen} />
-      <MemberProfileIcon displayName={user.displayName} photoURL={user.photoURL} />
+      <MemberProfileIcon
+        displayName={user.displayName}
+        photoURL={user.photoURL}
+        style={"flex flex-col items-center justify-center"}
+      />
       <InterestGroup field={user.field} fieldDetails={user.fieldDetails} />
-      <MemberSNSLink github={user.github} twitter={user.twitter} instagram={user?.instagram} />
+      <MemberSNSLinks github={user.github} twitter={user.twitter} instagram={user?.instagram} />
       <div className="rounded-lg py-1 px-2">
         <div className="flex">
           <div className="flex flex-col">
