@@ -1,12 +1,12 @@
 import { NextPage } from "next";
-import { Layout } from "src/components/layout";
+import { AppLayout } from "src/components/layout/Layout";
 import { TeachingMaterial } from "src/components/page/TeachingMaterial";
 
 const TeachingMaterialPage: NextPage = () => {
   return (
-    <Layout>
+    <AppLayout>
       <TeachingMaterial />
-    </Layout>
+    </AppLayout>
   );
 };
 

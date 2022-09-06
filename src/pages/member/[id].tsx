@@ -1,12 +1,12 @@
 import { NextPage } from "next";
-import { Layout } from "src/components/layout";
+import { AppLayout } from "src/components/layout/Layout";
 import { MemberDetail } from "src/components/page/Member/MemberDetail";
 
 const MemberDetailPage: NextPage = () => {
   return (
-    <Layout>
+    <AppLayout>
       <MemberDetail />
-    </Layout>
+    </AppLayout>
   );
 };
 export default MemberDetailPage;
