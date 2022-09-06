@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 type Props = {
-  field: string;
+  field: string | null;
 };
 export const FieldInterest: FC<Props> = ({ field }) => {
   return (
