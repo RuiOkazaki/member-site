@@ -7,7 +7,15 @@ export const LINKS = {
   MEMBER: "/member",
   SIGNUP: "/signup",
   LOGIN: "/login",
-  ADMIN: "/admin",
-  ADMINID: "/admin/[id]",
   QUESTION: "/question",
+};
+
+export const ADMINLINKS = {
+  HOME: "/admin",
+  MEMBER: "/admin/member",
+  QUESTION: "/admin/question",
+  EVENT: "/admin/event",
+  STUDYMEETING: "/admin/study-meeting",
+  TEACHINGMATERIAL: "/admin/teaching-material",
+  ONEONONE: "/admin/one-on-one",
 };

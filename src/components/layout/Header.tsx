@@ -2,10 +2,9 @@
 import { FC, memo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Avatar } from "@mantine/core";
+import { Avatar, Button, Text } from "@mantine/core";
 import { useCurrentUser } from "src/global-states/atoms";
-import { CalendarIcon } from "../ui-libraries/icon";
-import { LINKS } from "../utils/constants/index";
+import { ADMINLINKS, LINKS } from "../utils/constants/index";
 import { ProfileEditContentsModal } from "../feature/HeaderNavItem/ProfileEditContentsModal";
 
 export const NavItem: FC = memo(() => {
@@ -24,9 +23,9 @@ export const NavItem: FC = memo(() => {
         <button onClick={handleNotificationModal} className="bg-white hover:text-gray-700">
         <BellIcon />
       </button> */}
-      <button className="bg-white hover:text-gray-700">
+      {/* <button className="bg-white hover:text-gray-700">
         <CalendarIcon />
-      </button>
+      </button> */}
       <button onClick={handleSettingModal} className="rounded-full hover:opacity-90">
         {currentUser.photoURL ? (
           <Avatar
@@ -68,3 +67,34 @@ export const Header: FC = memo(() => {
   );
 });
 Header.displayName = "Header";
+
+export const AdminHeader: FC = memo(() => {
+  return (
+    <header
+      className="sticky top-0 z-10 flex h-12 items-center justify-between border-b px-2"
+      style={{ backgroundColor: "#23282D" }}
+    >
+      <div className="flex gap-4">
+        <Link href={ADMINLINKS.HOME}>
+          <Image src={"/favicons/favicon-32x32.png"} width={22.5} height={22.5} alt="Tech.Uniアイコン" />
+        </Link>
+        <Text color="white" weight={500} size="sm">
+          管理画面
+        </Text>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <Link href="/">
+          <a className="text-white hover:opacity-90">
+            <Button color="gray" variant="light" size="xs" compact className="hover:bg-gray-100">
+              メンバーサイトへ
+            </Button>
+          </a>
+        </Link>
+
+        <NavItem />
+      </div>
+    </header>
+  );
+});
+AdminHeader.displayName = "AdminHeader";
