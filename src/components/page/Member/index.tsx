@@ -30,8 +30,21 @@ export const Member: FC = () => {
     });
   };
 
+  const displaySameGradeMembers: () => JSX.Element | JSX.Element[] = () => {
+    const sameGradeMembers: User[] = userList.filter((user) => {
+      const isSameGradeMember: boolean = user.grade === currentUser.grade;
+      const isNotCurrentUser: boolean = user.uid !== currentUser.uid;
+      return isSameGradeMember && isNotCurrentUser;
+    });
+
+    if (sameGradeMembers.length === 0) return <Text>いないようです😭</Text>;
+    return sameGradeMembers.map((sameGradeMember) => {
+      return <MemberCard key={sameGradeMember.uid} data={sameGradeMember} />;
+    });
+  };
+
   return (
-    <div className="flex w-full flex-col flex-wrap gap-5">
+    <div className="mb-8 flex w-full flex-col flex-wrap gap-5">
       <div className="pt-5">
         <Text weight="bold">コミッティー</Text>
         <div className="flex flex-wrap gap-5">
@@ -45,10 +58,19 @@ export const Member: FC = () => {
             ))}
         </div>
       </div>
+
       <div>
         <Text weight="bold">{myField}を専門としているメンバー</Text>
         <div className="flex gap-2 rounded-md bg-white py-6 px-4 shadow-md">{displayMyFieldMembers()}</div>
       </div>
+
+      <div>
+        <Text weight="bold">
+          あなたと同学年のメンバー<span className="text-gray-600">（{currentUser.grade}）</span>
+        </Text>
+        <div className="flex gap-2 rounded-md bg-white py-6 px-4 shadow-md">{displaySameGradeMembers()}</div>
+      </div>
+
       <Text weight="bold">全員</Text>
       <div className="flex gap-2 rounded-md bg-white py-6 px-4 shadow-md">
         {userList.map((user) => {
@@ -62,6 +84,3 @@ export const Member: FC = () => {
 // TODO: リファクタ 📝
 // 専門メンバーと全員でコンポーネント共通化できそう
 // コミッティーでもできるかも？？
-
-// TODO: 実装メモ 🚧
-// myFieldを設定していない場合どうするのか？？

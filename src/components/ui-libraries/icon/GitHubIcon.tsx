@@ -30,4 +30,5 @@ export const GitHubIcon: FC<Props> = ({ size, iconColor, className }) => {
 GitHubIcon.defaultProps = {
   className: "cursor-pointer",
   size: "small",
+  iconColor: "gray",
 };

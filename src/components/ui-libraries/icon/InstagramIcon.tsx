@@ -29,4 +29,5 @@ export const InstagramIcon: FC<Props> = ({ size, iconColor, className }) => {
 InstagramIcon.defaultProps = {
   className: "cursor-pointer",
   size: "small",
+  iconColor: "gray",
 };
