@@ -24,17 +24,18 @@ export const StudyMeeting: FC = () => {
       <Text component="span" align="center" size="xl" weight={700}>
         勉強会
       </Text>
-      <div className="flex gap-4">
-        {eventList.map((event, index) => {
+      <div className="mt-4 grid grid-cols-4 gap-4">
+        {eventList.map((event, i) => {
           return (
-            <StudyCard
-              key={index}
-              date={event.date}
-              field={event.field}
-              organizerUuid={event.organizerUuid}
-              photoUrl={event.photoUrl}
-              title={event.title}
-            />
+            <div key={i} className="col-span-2">
+              <StudyCard
+                date={event.date}
+                field={event.field}
+                organizerUuid={event.organizerUuid}
+                photoUrl={event.photoUrl}
+                title={event.title}
+              />
+            </div>
           );
         })}
       </div>

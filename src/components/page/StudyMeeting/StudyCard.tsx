@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { Text } from "@mantine/core";
+import { Card, Group, Text } from "@mantine/core";
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
@@ -36,29 +36,33 @@ export const StudyCard: FC<Props> = ({ date, field, organizerUuid, photoUrl, tit
 
   return (
     <Link href={`/study-meeting/${title}`}>
-      <div className="my-4 rounded-lg bg-white shadow-md hover:cursor-pointer hover:opacity-80">
-        <div>{photoUrl !== null && <img src={photoUrl} alt={title} className="w-[25rem] rounded" />}</div>
+      <Card shadow="sm" p="sm" radius="md" withBorder className="flex flex-col hover:cursor-pointer">
+        <Card.Section className="flex items-center justify-center">
+          <img src={photoUrl} alt={title} className="h-[10rem]" />
+        </Card.Section>
 
-        <div className="flex flex-col gap-2 p-4">
-          <Text size="md" weight="bold">
-            {title}
-          </Text>
+        <div>
+          <Group mt="md" mb="xs" className="block">
+            <Text weight={500} className="w-full truncate">
+              {title}
+            </Text>
+          </Group>
 
-          <div className="flex justify-between">
-            <Text size="sm" weight="bold" color="gray">
+          <Group position="apart" mb="xs">
+            <Text size="sm" weight={500} color="gray">
               {year}.{monthAndDate}.{time}
             </Text>
-            <FieldInterest field={field} />
-          </div>
+            <FieldInterest field={field} size="xs" />
+          </Group>
 
-          <div className="flex items-center gap-4">
-            <Text weight="bold" color="gray">
+          <Group className="flex">
+            <Text size="sm" weight={500} color="gray" className="hidden sm:block">
               主催者
             </Text>
             <ProfileImg displayName={organizer?.displayName} photoURL={organizer?.photoURL} />
-          </div>
+          </Group>
         </div>
-      </div>
+      </Card>
     </Link>
   );
 };
