@@ -21,7 +21,11 @@ export const MemberDetail = () => {
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col pt-5">
       <div className="flex items-start">
-        <img src={user.photoURL} alt={`${user.displayName}の画像`} className="mr-8 mt-4 w-28 rounded-full" />
+        <img
+          src={user.photoURL}
+          alt={`${user.displayName}の画像`}
+          className="mr-8 mt-4 w-28 h-28 rounded-full object-cover"
+        />
 
         <div className="flex">
           <div className="mt-4 flex grow flex-col items-start">
