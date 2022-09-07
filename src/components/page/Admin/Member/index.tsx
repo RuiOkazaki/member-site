@@ -10,7 +10,7 @@ const TABLE_HEADER = {
   status: "Status",
 };
 
-export const Admin: FC = () => {
+export const AdminMember: FC = () => {
   const { fetchUser, userList, setUserList, isLoading } = useFetchUserList();
 
   useEffect(() => {

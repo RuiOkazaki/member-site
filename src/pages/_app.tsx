@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { FC, useEffect, useState } from "react";
 import { AuthProvider } from "src/components/ui-libraries/AuthProvider";
 import { AuthModal } from "src/components/feature/AuthModal";
-import { TECH_UNI } from "src/components/utils/constants/index";
+import { LINKS, TECH_UNI } from "src/components/utils/constants/index";
 
 const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   return (
@@ -17,7 +17,7 @@ const App = ({ Component, pageProps, router }: AppProps): JSX.Element => {
   );
 };
 
-const AppPage: FC<AppProps> = ({ Component, pageProps }) => {
+const AppPage: FC<AppProps> = ({ Component, pageProps, router }) => {
   const [opened, setOpened] = useState(false);
   const [password, setPassword] = useState<string | null>(null);
 
@@ -27,6 +27,10 @@ const AppPage: FC<AppProps> = ({ Component, pageProps }) => {
   }, []);
 
   if (!password) return <AuthModal opened={opened} setOpened={setOpened} />;
+
+  if (router.pathname === LINKS.LOGIN) {
+    return <Component {...pageProps} />;
+  }
 
   return (
     <AuthProvider>

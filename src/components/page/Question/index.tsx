@@ -1,6 +1,7 @@
 import { Center, Text } from "@mantine/core";
 import { Suspense } from "react";
 import { AppLoading } from "src/components/ui-libraries/AppLoading";
+import { AppUnderConstruction } from "src/components/ui-libraries/AppUnderConstruction";
 
 export const Question = () => {
   return (
@@ -17,6 +18,7 @@ export const Question = () => {
       </div>
 
       <Text weight="bold">今までの質問一覧</Text>
+      <AppUnderConstruction className="flex flex-col items-center justify-center p-10" />
     </Suspense>
   );
 };

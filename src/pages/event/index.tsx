@@ -1,12 +1,12 @@
 import { Events } from "src/components/page/Events";
-import { Layout } from "src/components/layout";
+import { AppLayout } from "src/components/layout/Layout";
 import type { NextPage } from "next";
 
 const EventsPage: NextPage = () => {
   return (
-    <Layout>
+    <AppLayout>
       <Events />
-    </Layout>
+    </AppLayout>
   );
 };
 

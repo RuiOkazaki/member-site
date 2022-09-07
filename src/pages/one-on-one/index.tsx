@@ -1,12 +1,12 @@
 import { NextPage } from "next";
-import { Layout } from "src/components/layout";
+import { AppLayout } from "src/components/layout/Layout";
 import { OneOnOne } from "src/components/page/OneOnOne";
 
 const OneOnOnePage: NextPage = () => {
   return (
-    <Layout>
+    <AppLayout>
       <OneOnOne />
-    </Layout>
+    </AppLayout>
   );
 };
 

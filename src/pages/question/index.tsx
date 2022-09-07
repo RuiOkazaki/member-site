@@ -1,12 +1,12 @@
 import { NextPage } from "next";
-import { Layout } from "src/components/layout";
+import { AppLayout } from "src/components/layout/Layout";
 import { Question } from "src/components/page/Question/index";
 
 const QuestionPage: NextPage = () => {
   return (
-    <Layout>
+    <AppLayout>
       <Question />
-    </Layout>
+    </AppLayout>
   );
 };
 

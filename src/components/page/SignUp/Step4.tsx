@@ -22,6 +22,10 @@ export const Step4: FC<Props> = ({ step, setStep }) => {
         <p className="text-8xl">🦔</p>
         <br />
         <br />
+
+        {/* //todo slackに行けるボタンを書く */}
+        {/* はじめに必読のところを書いておくと、入会フローがいい感じになる */}
+
         <br />
         <AppButton
           color="blue"

@@ -27,7 +27,9 @@ export const Status: FC<Props> = ({ status, user, onSave }) => {
 
   return (
     <>
-      <div onClick={handleOpen}>{memberStatus(status)}</div>
+      <div onClick={handleOpen} className="hover:cursor-pointer hover:opacity-80">
+        {memberStatus(status)}
+      </div>
       <MemberStatusEditContentsModal user={user} opened={statusModalOpened} setOpened={handleOpen} onSave={onSave} />
     </>
   );
