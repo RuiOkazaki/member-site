@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, memo } from "react";
 import Link from "next/link";
-import { fieldDetailsData } from "src/components/utils/constants/field";
+import { fieldDetailsData } from "src/components/utils/constants/index";
 import { User } from "src/modules/user";
 import { FieldInterest } from "./FieldInterest";
 import { MemberProfileIcon } from "./MemberProfileIcon";
@@ -46,9 +46,9 @@ export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) =
   if (!field || !fieldDetails) return null;
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <FieldInterest field={field} />
-      <div className="mt-1 flex w-48 flex-wrap items-center">
+      <div className="mt-1 flex w-44 flex-wrap items-center">
         {fieldDetails.map((fieldDetail, index) => {
           return (
             <div className="flex items-center justify-center" key={index}>

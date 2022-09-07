@@ -1,5 +1,5 @@
 export * from "./env";
-export * from "./field";
+export * from "./fieldDetails";
 export * from "./interest";
 export * from "./link";
 export * from "./status";

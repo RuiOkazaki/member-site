@@ -1,5 +1,6 @@
 export * from "./BellIcon";
 export * from "./CalendarIcon";
+export * from "./ChevronLeftIcon";
 export * from "./DeleteIcon";
 export * from "./EventIcon";
 export * from "./GitHubIcon";

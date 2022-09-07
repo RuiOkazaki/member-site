@@ -1,3 +1,4 @@
+import { Avatar } from "@mantine/core";
 import { FC } from "react";
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 export const ProfileImg: FC<Props> = ({ displayName, photoURL }) => {
   return (
     <div>
-      <img src={photoURL} alt={`${displayName}の画像`} className={`w-12 rounded-full`} />
+      <Avatar src={photoURL} radius="xl" size={44} className="hover:opacity-80" alt="ゲスト" />
       <p className="pt-1 text-xs ">{displayName}</p>
     </div>
   );

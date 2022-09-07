@@ -1,12 +1,18 @@
+import { Badge, Text } from "@mantine/core";
 import { FC } from "react";
+import { interestData } from "src/components/utils/constants";
 
 type Props = {
   field: string | null;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
 };
-export const FieldInterest: FC<Props> = ({ field }) => {
+export const FieldInterest: FC<Props> = ({ field, size }) => {
+  const backgroundColor = interestData.find((interest) => interest.value === field)?.color ?? "gray";
   return (
-    <div className="w-28 whitespace-nowrap rounded-full bg-yellow-500 py-0.5 px-1 text-center  text-sm font-bold text-white">
-      <p>{field}</p>
-    </div>
+    <Badge className="box-content w-12 min-w-min whitespace-nowrap px-1 py-0.5" color={backgroundColor} size={size}>
+      <Text weight="bold" size="sm">
+        {field}
+      </Text>
+    </Badge>
   );
 };
