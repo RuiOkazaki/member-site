@@ -1,12 +1,12 @@
 import { NextPage } from "next";
+import { AppLayout } from "src/components/layout/Layout";
 import { StudyMeetingDetail } from "src/components/page/StudyMeeting/StudyMeetingDetail";
-import { Layout } from "src/components/layout";
 
 const StudyMeetingDetailPage: NextPage = () => {
   return (
-    <Layout>
+    <AppLayout>
       <StudyMeetingDetail />
-    </Layout>
+    </AppLayout>
   );
 };
 export default StudyMeetingDetailPage;
