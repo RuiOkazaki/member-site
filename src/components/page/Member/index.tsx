@@ -50,7 +50,8 @@ export const Member: FC = () => {
         <div className="flex flex-wrap gap-5">
           {userList
             .filter((user) => {
-              const isDistinctLeaderPosition = user.position === 3 || user.position === 4 || user.position === 5;
+              const isDistinctLeaderPosition =
+                user.position === 3 || user.position === 4 || user.position === 5 || user.position === 6;
               return isDistinctLeaderPosition;
             })
             .map((user) => (
