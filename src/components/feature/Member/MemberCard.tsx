@@ -75,10 +75,16 @@ export const InterestGroup: FC<InterestGroupProps> = ({ field, fieldDetails }) =
 type RibbonProps = { position: number };
 const Ribbon: FC<RibbonProps> = ({ position }) => {
   const positionTitle = (position: number) => {
-    if (position === 3) return "副代表";
-    if (position === 4) return "代表";
-    if (position === 5) return "副会長";
-    if (position === 6) return "会長";
+    switch (position) {
+      case 3:
+        return "副会長";
+      case 4:
+        return "代表";
+      case 5:
+        return "副代表";
+      case 6:
+        return "会長";
+    }
   };
   return (
     <>
