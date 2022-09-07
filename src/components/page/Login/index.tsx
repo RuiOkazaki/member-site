@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { GoogleIcon, GitHubIcon } from "src/components/ui-libraries/icon";
+import { GoogleIcon } from "src/components/ui-libraries/icon";
 import { useAuth } from "src/hooks/useAuth";
 
 type ButtonProps = {
@@ -21,14 +21,14 @@ const LoginButton: FC<ButtonProps> = ({ Icon, text, onClick }) => {
 };
 
 export const Login: FC = () => {
-  const { signInWithGoogle, signInWithGitHub } = useAuth();
+  const { signInWithGoogle } = useAuth();
 
   return (
     <div className="flex h-screen items-center justify-center">
       <div>
         <h1 className="pb-10 text-center text-2xl font-bold">ログインしてください</h1>
         <LoginButton Icon={<GoogleIcon />} text="Google" onClick={signInWithGoogle} />
-        <LoginButton Icon={<GitHubIcon />} text="GitHub" onClick={signInWithGitHub} />
+        {/* <LoginButton Icon={<GitHubIcon />} text="GitHub" onClick={signInWithGitHub} /> */}
       </div>
     </div>
   );
