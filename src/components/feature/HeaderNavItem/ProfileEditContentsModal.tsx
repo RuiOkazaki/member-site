@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { useUploadProfileIcon } from "src/hooks/useUploadProfileIcon";
 import { User } from "src/modules/user";
 import { AppLink } from "src/components/ui-libraries/AppLink";
+import { AppUnderConstruction } from "src/components/ui-libraries/AppUnderConstruction";
 import { auth, db } from "../../utils/libs/firebase";
 import { facultyData, gradeData, fieldDetailsData, interestData, LINKS, UID } from "../../utils/constants/index";
 import { GitHubIcon, InfoIcon, InstagramIcon, LogoutIcon, SettingIcon, TwitterIcon } from "../../ui-libraries/icon";
@@ -264,8 +265,6 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
 
         <Tabs.Panel value="その他">
           {/* <Text weight="bold">メール通知</Text> */}
-          <Text weight="bold">テーマカラー</Text>
-
           <div className="pt-4">
             <Text weight="bold">アカウントの管理</Text>
             <AppButton
@@ -281,6 +280,8 @@ export const ProfileEditContentsModal: FC<Props> = ({ currentUser, setCurrentUse
               ログアウト
             </AppButton>
 
+            <Text weight="bold">テーマカラー</Text>
+            <AppUnderConstruction ImageWidht={100} ImageHeight={60} textSize="xs" className="max-w-fit items-start" />
             {/* 当分は使わないので、コメントアウト */}
             {/* <AppButton type="button" color="red" size="xs" radius="md" variant="subtle" className="mx-auto mb-5"> 
               <DeleteIcon />
